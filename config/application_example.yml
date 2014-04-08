@@ -1,0 +1,11 @@
+SECRET_TOKEN: 'SOME_super_SECRET_token_GOES_here'
+DATABASE:
+    development:
+        HOST: 'localhost'
+        DB: 10
+    production:
+        HOST: 'localhost'
+        DB: 11
+    test:
+        HOST: 'localhost'
+        DB: 9
