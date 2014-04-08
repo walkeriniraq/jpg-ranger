@@ -1,0 +1,10 @@
+<div>
+  <div id="photo-upload-div" style="border: 1px solid #008B00; padding: 30px; text-align: center; background-color: #EEFFEE">
+    Drop photos here or click to add - accepts jpg, png, and gif
+    <div>Maximum of five photos per post.</div>
+  </div>
+  <input style="display: none" id="fileupload" type="file" name="files[]" data-url="home/upload" accept="image/*" multiple>
+</div>
+<% @photos.each do |photo| %>
+  <img src="<%= photo.to_s %>" style="max-height: 400px; max-width: 400px;" >
+<% end %>

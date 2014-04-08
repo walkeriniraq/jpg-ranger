@@ -26,3 +26,5 @@ config/secrets.yml
 /.idea
 
 /config/application.yml
+
+/public/photo_storage/*.jpg

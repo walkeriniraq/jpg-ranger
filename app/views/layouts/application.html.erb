@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JpgRanger</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title>JPEG Ranger</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style="padding: 1em 0;">
 
-<%= yield %>
+<div class="main container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
