@@ -24,6 +24,7 @@ class HomeController < ApplicationController
     # else
     render_json status: 'ok', files: files
     # end
+    # testing a thing
   end
 
   def process_upload(file)
