@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.widget
+//= require jquery-ui-1.10.4
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require bootstrap

@@ -10,5 +10,24 @@
  *
  *= require_self
  *= require bootstrap
+ *= require jquery-ui-1.10.4
  *= require_tree .
  */
+
+.photo {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+.tag {
+    border: 1px solid darkgray;
+    padding: 1px 5px;
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.drop-highlight {
+    border: 2px solid lightblue;
+}

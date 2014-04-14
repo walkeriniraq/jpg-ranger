@@ -6,3 +6,9 @@ $(document).on 'page:change', ->
 
   $('#photo-upload-div').click ->
     $('#fileupload').click()
+
+  $('.tag').draggable(helper: 'clone')
+
+  $('.photo').droppable(hoverClass: 'drop-highlight', drop: (evt, ui) ->
+    $.post('home/tag', { tag: ui.helper.text(), filename: $(@).data('filename') })
+  )
