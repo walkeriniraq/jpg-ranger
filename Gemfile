@@ -27,9 +27,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'redis-objects'
-gem 'connection_pool'
-gem 'fattr'
+gem 'mongoid', '~> 4.0.0.beta1'
+gem 'kaminari'
+
 gem 'draper', '~> 1.3.0'
 gem 'andand'
 
