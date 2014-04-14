@@ -4,24 +4,26 @@
   </div>
   <input style="display: none" id="fileupload" type="file" name="files[]" data-url="home/upload" accept="image/*" multiple>
 </div>
+<h3>Recent Uploads</h3>
+<div class="clearfix">
+  <% @photos.each do |photo| %>
+    <div class="photo" data-filename="<%= photo.filename %>">
+      <div style="text-align: center;">
+        <a href="<%= photo.medium_thumb %>" title="<%= photo.original_filename %>" target="_blank">
+          <img src="<%= photo.small_thumb %>">
+        </a>
+      </div>
+      <div><%= photo.photo_time.andand.strftime('%F') %></div>
+      <div>
+        <% photo.tags.each do |tag| %>
+          <span class="tag"><%= tag %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
 <div>
   <% @tags.each do |tag| %>
     <span class="tag"><%= tag %></span>
   <% end %>
 </div>
-<% @photos.each do |photo| %>
-  <div class="photo" data-filename="<%= photo.filename %>">
-    <div style="text-align: center;">
-      <a href="<%= photo.medium_thumb %>" target="_blank">
-        <img src="<%= photo.small_thumb %>">
-      </a>
-    </div>
-    <div><%= photo.original_filename %></div>
-    <div><%= photo.photo_time %></div>
-    <div>
-      <% photo.tags.each do |tag| %>
-        <span class="tag"><%= tag %></span>
-      <% end %>
-    </div>
-  </div>
-<% end %>

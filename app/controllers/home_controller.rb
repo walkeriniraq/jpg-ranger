@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   PHOTO_STORAGE_PATH = PUBLIC_PATH + 'photo_storage'
 
   def index
-    @photos = Photo.page(1)
+    @photos = Photo.order_by(:upload_time.desc).page(1)
     @tags = Photo.distinct(:tags)
   end
 
