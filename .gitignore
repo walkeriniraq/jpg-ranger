@@ -28,3 +28,6 @@ config/secrets.yml
 /config/application.yml
 
 /public/photo_storage/*.jpg
+/public/photo_storage/*.png
+/public/thumb_storage/*.jpg
+/public/thumb_storage/*.png
