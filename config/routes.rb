@@ -3,5 +3,8 @@ JpgRanger::Application.routes.draw do
 
   post 'home/upload'
   post 'home/tag'
+  get 'home/photo/:filename.:ext', to: 'home#photo'
+  get 'home/small_thumb/:filename.:ext', to: 'home#small_thumb'
+  get 'home/medium_thumb/:filename.:ext', to: 'home#medium_thumb'
 
 end

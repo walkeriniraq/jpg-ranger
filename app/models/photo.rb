@@ -1,5 +1,5 @@
 class Photo
-  WEB_PATH = Pathname.new 'thumb_storage'
+  # WEB_PATH = Pathname.new 'thumb_storage'
 
   include Mongoid::Document
 
@@ -11,12 +11,12 @@ class Photo
   field :tags, type: Array
   field :fh, as: :file_hash, type: String
 
-  def small_thumb
-    WEB_PATH + ('sm_' + filename.to_s)
-  end
-
-  def medium_thumb
-    WEB_PATH + ('md_' + filename.to_s)
-  end
+  # def small_thumb
+  #   WEB_PATH + ('sm_' + filename.to_s)
+  # end
+  #
+  # def medium_thumb
+  #   WEB_PATH + ('md_' + filename.to_s)
+  # end
 
 end

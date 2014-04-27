@@ -33,12 +33,19 @@ gem 'kaminari'
 gem 'draper', '~> 1.3.0'
 gem 'andand'
 
+gem 'browser'
+
 # use puma instead of f#@&ing WEBrick
 gem 'puma'
 
 gem 'bcrypt-ruby'
 gem 'rmagick4j'
 gem 'exifr'
+
+group :test do
+  gem 'rspec'
+  gem 'mocha'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

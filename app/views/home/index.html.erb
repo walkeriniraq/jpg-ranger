@@ -9,8 +9,8 @@
   <% @photos.each do |photo| %>
     <div class="photo" data-filename="<%= photo.filename %>">
       <div style="text-align: center;">
-        <a href="<%= photo.medium_thumb %>" title="<%= photo.original_filename %>" target="_blank">
-          <img src="<%= photo.small_thumb %>">
+        <a href="home/medium_thumb/<%= photo.filename %>" title="<%= photo.original_filename %>" target="_blank">
+          <img src="home/small_thumb/<%= photo.filename %>">
         </a>
       </div>
       <div><%= photo.photo_time.andand.strftime('%F') %></div>
