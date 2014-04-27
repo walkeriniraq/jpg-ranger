@@ -27,5 +27,5 @@ config/secrets.yml
 
 /config/application.yml
 
-/photo_storage/**.jpg
-/photo_storage/**.png
+/photo_storage/full/*
+/photo_storage/thumb/*
