@@ -2,7 +2,8 @@ require 'pathname'
 
 class PhotoDiskStore
   def initialize
-    @root = Pathname.new('photo_storage')
+    # @root = Pathname.new('photo_storage')
+    @root = Pathname.new(Rails.configuration.photo_store)
     @full = @root + 'full'
     @thumb = @root + 'thumb'
     @full.mkdir unless @full.exist?

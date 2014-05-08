@@ -8,27 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require bootstrap
  *= require jquery-ui-1.10.4
  *= require_tree .
+ *= require_self
  */
-
-.photo {
-    display: inline-block;
-    border: 1px solid black;
-    padding: 5px;
-    margin: 5px;
-    float: left;
-}
-
-.tag {
-    border: 1px solid darkgray;
-    padding: 1px 5px;
-    background-color: lightblue;
-    cursor: pointer;
-}
-
-.drop-highlight {
-    border: 2px solid lightblue;
-}

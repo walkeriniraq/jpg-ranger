@@ -1,0 +1,11 @@
+<a href="/">Home</a>
+<h3>Tags</h3>
+
+<div>
+  Add a new tag
+</div>
+<% @tags.each do |tag| %>
+  <a href="/collection/tag/<%= tag %>" class="tag label label-primary">
+    <%= tag %>
+  </a>
+<% end %>

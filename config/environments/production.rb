@@ -77,4 +77,7 @@ JpgRanger::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.photo_store = 'D:\photo_store\'
+
 end

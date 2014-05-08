@@ -7,4 +7,5 @@ JpgRanger::Application.routes.draw do
   get 'home/small_thumb/:filename.:ext', to: 'home#small_thumb'
   get 'home/medium_thumb/:filename.:ext', to: 'home#medium_thumb'
 
+  get 'collection/tag/:tag', to: 'collection#tag'
 end
