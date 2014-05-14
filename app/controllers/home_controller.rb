@@ -44,4 +44,8 @@ class HomeController < ApplicationController
     send_file PhotoDiskStore.new.md_thumb_path("#{params[:filename]}.#{params[:ext]}"), disposition: 'inline'
   end
 
+  def preview
+    @photo = Photo.where(filename: "#{params[:filename]}.#{params[:ext]}").first
+  end
+
 end

@@ -5,7 +5,7 @@
   Add a new tag
 </div>
 <% @tags.each do |tag| %>
-  <a href="/collection/tag/<%= tag %>" class="tag label label-primary">
+  <a href="<%= tag_collection_path tag %>" class="tag label label-primary">
     <%= tag %>
   </a>
 <% end %>

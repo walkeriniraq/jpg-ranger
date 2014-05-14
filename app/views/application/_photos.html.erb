@@ -4,14 +4,14 @@
       <div class="col-md-3">
         <div class="photo img-thumbnail" data-filename="<%= photo.filename %>">
           <div style="text-align: center;">
-            <a href="/home/medium_thumb/<%= photo.filename %>" title="<%= photo.original_filename %>" target="_blank">
-              <img class="photo-thumbnail" src="/home/small_thumb/<%= photo.filename %>">
+            <a href="/preview/<%= photo.filename %>" title="<%= photo.original_filename %>" target="preview">
+              <img class="photo-thumbnail" src="/small_thumb/<%= photo.filename %>">
             </a>
           </div>
           <div><%= photo.photo_time.andand.strftime('%F') %></div>
           <div class="tag-holder" style="text-align: center">
             <% photo.tags.each do |tag| %>
-              <a href="/collection/tag/<%= tag %>" class="tag label label-primary">
+              <a href="<%= tag_collection_path tag %>" class="tag label label-primary">
                 <%= tag %>
               </a>
             <% end %>
