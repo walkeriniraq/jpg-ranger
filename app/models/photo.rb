@@ -11,6 +11,12 @@ class Photo
   field :tags, type: Array
   field :fh, as: :file_hash, type: String
 
+  def add_tag(tag)
+    tag = tag.downcase.strip
+    tags << tag unless tags.include? tag
+    save
+  end
+
   # def small_thumb
   #   WEB_PATH + ('sm_' + filename.to_s)
   # end

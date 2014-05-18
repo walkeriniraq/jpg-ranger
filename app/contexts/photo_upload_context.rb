@@ -3,8 +3,6 @@ require 'delegate'
 
 class PhotoUploadContext
 
-  attr_reader :status, :filename
-
   def initialize(file, metadata_store, disk_store)
     @upload_file = UploadedFileRole.new(file)
     @metadata_store = metadata_store
@@ -12,12 +10,10 @@ class PhotoUploadContext
   end
 
   def call
-    @status = 'file was not an allowed image type' and return unless @upload_file.photo_type?
+    return { status: 'file was not an allowed image type' } unless @upload_file.photo_type?
     existing_photo = @metadata_store.get_by_hash(@upload_file.file_hash)
-    unless existing_photo.nil?
-      set_return 'duplicate file', existing_photo.filename
-      return
-    end
+    return { status: 'duplicate file', photo: existing_photo } unless existing_photo.nil?
+
     photo = @disk_store.store(@upload_file)
     photo.save
     begin
@@ -25,7 +21,7 @@ class PhotoUploadContext
     rescue Java::JavaLang::NullPointerException
       # yeah, ImageMagick throws a NPE if the photo isn't a photo
       # TODO: log this error condition
-      set_return 'file could not be opened', photo.filename
+      return { status: 'file could not be opened' }
     end
     if @upload_file.extension == '.jpg' || @upload_file.extension == '.jpeg'
       exif = EXIFR::JPEG.new(@upload_file.tempfile)
@@ -37,15 +33,10 @@ class PhotoUploadContext
     end
     img.resize_to_fit(150, 150).write @disk_store.sm_thumb_path(photo.filename)
     img.resize_to_fit(1000, 1000).write @disk_store.md_thumb_path(photo.filename)
-    set_return 'ok', photo.filename
+    { status: 'ok', photo: photo }
   rescue EXIFR::MalformedJPEG
-      # TODO: log this error condition
-    set_return 'file extension is jpg but was not a jpeg', photo.filename
-  end
-
-  def set_return(status, filename)
-    @status = status
-    @filename = filename
+    # TODO: log this error condition
+    'file extension is jpg but was not a jpeg'
   end
 
   class DiskStoreRole < SimpleDelegator

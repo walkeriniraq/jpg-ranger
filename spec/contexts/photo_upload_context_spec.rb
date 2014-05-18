@@ -13,43 +13,18 @@ class FakeMetadataStore
 end
 
 describe PhotoUploadContext do
-  describe '#filename' do
-    # it 'contains the filename' do
-    #   context = PhotoUploadContext.new(OpenStruct.new(original_filename: 'foo.bar'), nil)
-    #   context.call
-    #   expect(context.filename).to eq 'foo.bar'
-    # end
-    it 'returns existing filename when duplicate' do
+  describe '#call' do
+    it 'returns existing photo when duplicate' do
       store = mock
-      store.expects(:get_by_hash).returns(OpenStruct.new(filename: 'test.jpg'))
+      store.expects(:get_by_hash).returns('fake photo object')
       context = PhotoUploadContext.new(OpenStruct.new(original_filename: 'other.jpg', tempfile: 'spec/resources/one.txt'), store, nil)
-      context.call
-      expect(context.filename).to eq 'test.jpg'
-    end
-  end
-
-  describe '#status' do
-    it 'indicates when file is not photo' do
-      context = PhotoUploadContext.new(OpenStruct.new(original_filename: 'foo.bar'), nil, nil)
-      context.call
-      expect(context.status).to eq 'file was not an allowed image type'
-    end
-    it 'indicates when file is a duplicate' do
-      store = mock
-      store.expects(:get_by_hash).returns(OpenStruct.new(filename: 'test.jpg'))
-      context = PhotoUploadContext.new(OpenStruct.new(original_filename: 'other.jpg', tempfile: 'spec/resources/one.txt'), store, nil)
-      context.call
-      expect(context.status).to eq 'duplicate file'
+      ret = context.call
+      expect(ret[:status]).to eq 'duplicate file'
+      expect(ret[:photo]).to eq 'fake photo object'
     end
   end
 
   describe PhotoUploadContext::UploadedFileRole do
-    describe '#filename' do
-      it 'returns the original filename of a non-photo file' do
-        role = PhotoUploadContext::UploadedFileRole.new OpenStruct.new(original_filename: 'foo.bar')
-        expect(role.filename).to eq 'foo.bar'
-      end
-    end
     describe '#extension' do
       it 'returns the extension of the file' do
         role = PhotoUploadContext::UploadedFileRole.new OpenStruct.new(original_filename: 'foo.bar')

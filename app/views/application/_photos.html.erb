@@ -2,7 +2,7 @@
   <div class="row" style="margin-top: 10px;">
     <% photo_row.each do |photo| %>
       <div class="col-md-3">
-        <div class="photo img-thumbnail" data-filename="<%= photo.filename %>">
+        <div class="photo img-thumbnail" data-id="<%= photo.id %>">
           <div style="text-align: center;">
             <a href="<%= preview_path photo.id %>" title="<%= photo.original_filename %>" target="preview">
               <img class="photo-thumbnail" src="<%= small_thumb_path photo.id %>">

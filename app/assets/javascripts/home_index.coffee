@@ -10,5 +10,5 @@ $(document).on 'page:change', ->
   $('.tag').draggable(helper: 'clone')
 
   $('.photo').droppable(hoverClass: 'drop-highlight', drop: (evt, ui) ->
-    $.post('home/tag', { tag: ui.helper.text(), filename: $(@).data('filename') })
+    $.post('/tag_photo', { tag: ui.helper.text(), id: $(@).data('id') })
   )
