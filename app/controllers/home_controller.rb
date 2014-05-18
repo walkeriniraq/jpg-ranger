@@ -33,19 +33,22 @@ class HomeController < ApplicationController
   end
 
   def photo
-    send_file PhotoDiskStore.new.photo_path "#{params[:filename]}.#{params[:ext]}"
+    photo = Photo.find params[:id]
+    send_file PhotoDiskStore.new.photo_path photo.filename
   end
 
   def small_thumb
-    send_file PhotoDiskStore.new.sm_thumb_path "#{params[:filename]}.#{params[:ext]}"
+    photo = Photo.find params[:id]
+    send_file PhotoDiskStore.new.sm_thumb_path photo.filename
   end
 
   def medium_thumb
-    send_file PhotoDiskStore.new.md_thumb_path("#{params[:filename]}.#{params[:ext]}"), disposition: 'inline'
+    photo = Photo.find params[:id]
+    send_file PhotoDiskStore.new.md_thumb_path(photo.filename), disposition: 'inline'
   end
 
   def preview
-    @photo = Photo.where(filename: "#{params[:filename]}.#{params[:ext]}").first
+    @photo = Photo.find params[:id]
   end
 
 end
