@@ -6,6 +6,9 @@
         <%= tag %>
       </span>
     <% end %>
+    <div style="padding-top: 20px;">
+      <button class="btn btn-success preview-new-tag" data-id="<%= @photo.id %>">Add a new tag</button>
+    </div>
   </div>
   <div class="col-md-9">
     <img class="photo-thumbnail" src="<%= medium_thumb_path @photo.id %>">

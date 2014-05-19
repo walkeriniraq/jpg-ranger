@@ -35,3 +35,14 @@ $(document).on 'page:change', ->
     $.post("/delete/#{$(@).data('id')}").done ->
       console.log('OKAY')
       location.href = '/'
+
+  $('.preview-new-tag').click ->
+    ret = prompt('Type the value of the new tag')
+    return unless ret?
+    ret = ret.trim().toLowerCase()
+    if(ret.length < 1)
+      alert 'Please enter a value for the new tag - tag not created'
+      return
+    $.post('/tag_photo', { tag: ret, id: $(@).data('id') }).done ->
+      $('.preview-tag-holder').append("<span class='label label-primary'>#{ ret }</span>")
+

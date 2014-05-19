@@ -4,7 +4,7 @@ require 'pathname'
 class HomeController < ApplicationController
 
   def index
-    @photos = Photo.order_by(:upload_time.desc).page(1)
+    @photos = Photo.order_by(:upload_time.desc).limit(20)
     @tags = Photo.distinct(:tags)
   end
 
