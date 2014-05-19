@@ -1,4 +1,5 @@
 $(document).on 'page:change', ->
+  console.log 'LOADED'
   $('#fileupload').fileupload
     dataType: 'json'
     dropZone: $('#photo-upload-div')
@@ -21,3 +22,4 @@ $(document).on 'page:change', ->
       alert 'Please enter a value for the new tag - tag not created'
       return
     $('.system-tag-container').append("<a href='/collection/tag/#{ ret }' class='tag label label-primary'>#{ret}</a>")
+    $('.tag:not(.ui-draggable)').draggable(helper: 'clone');
