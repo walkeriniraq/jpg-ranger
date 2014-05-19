@@ -23,7 +23,7 @@ class PhotoUploadContext
       # TODO: log this error condition
       return { status: 'file could not be opened' }
     end
-    if @upload_file.extension == '.jpg' || @upload_file.extension == '.jpeg'
+    if @upload_file.extension == 'jpg' || @upload_file.extension == 'jpeg'
       exif = EXIFR::JPEG.new(@upload_file.tempfile)
       orientation = exif.orientation
       if orientation

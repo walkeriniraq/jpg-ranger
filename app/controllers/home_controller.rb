@@ -52,6 +52,11 @@ class HomeController < ApplicationController
 
   def preview
     @photo = Photo.find params[:id]
+    exif = @photo.exif PhotoDiskStore.new
+    unless exif.nil?
+      @resolution = "#{exif.width} x #{exif.height}"
+      @extra_exif = exif.exif.inspect unless exif.exif.nil?
+    end
   end
 
 end

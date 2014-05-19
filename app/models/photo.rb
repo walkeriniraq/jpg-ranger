@@ -1,6 +1,4 @@
 class Photo
-  # WEB_PATH = Pathname.new 'thumb_storage'
-
   include Mongoid::Document
 
   field :orig, as: :original_filename, type: String
@@ -17,12 +15,12 @@ class Photo
     save
   end
 
-  # def small_thumb
-  #   WEB_PATH + ('sm_' + filename.to_s)
-  # end
-  #
-  # def medium_thumb
-  #   WEB_PATH + ('md_' + filename.to_s)
-  # end
+  def extension
+    @ext ||= Pathname.new(filename).extname[1..-1].downcase
+  end
+
+  def exif(disk_store)
+    return EXIFR::JPEG.new(disk_store.photo_path filename) if (extension == 'jpg' || extension == 'jpeg')
+  end
 
 end
