@@ -1,11 +1,13 @@
 <a href="/">Home</a>
 <h3>Tags</h3>
 
-<div>
-  Add a new tag
+<div class="system-tag-container">
+  <% @tags.each do |tag| %>
+    <a href="<%= tag_collection_path tag %>" class="tag label label-primary">
+      <%= tag %>
+    </a>
+  <% end %>
 </div>
-<% @tags.each do |tag| %>
-  <a href="<%= tag_collection_path tag %>" class="tag label label-primary">
-    <%= tag %>
-  </a>
-<% end %>
+<div style="padding-top: 20px;">
+  <button class="btn btn-success new-tag-btn">Add a new tag</button>
+</div>
