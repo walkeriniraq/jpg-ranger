@@ -24,5 +24,5 @@ JpgRanger::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.photo_store_path = 'E:\VM Shared\Games\1Emulators\store'
+  config.photo_store = 'E:/VM Shared/Games/1Emulators/store'
 end

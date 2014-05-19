@@ -31,8 +31,10 @@ class PhotoUploadContext
       end
       photo.update_attributes(photo_time: exif.date_time) unless exif.date_time.nil?
     end
-    img.resize_to_fit(150, 150).write @disk_store.sm_thumb_path(photo.filename)
-    img.resize_to_fit(1000, 1000).write @disk_store.md_thumb_path(photo.filename)
+    img.resize_to_fit(150, 150).write "tmp/#{photo.filename}"
+    FileUtils.move "tmp/#{photo.filename}", @disk_store.sm_thumb_path(photo.filename)
+    img.resize_to_fit(1000, 1000).write "tmp/#{photo.filename}"
+    FileUtils.move "tmp/#{photo.filename}", @disk_store.md_thumb_path(photo.filename)
     { status: 'ok', photo: photo }
   rescue EXIFR::MalformedJPEG
     # TODO: log this error condition

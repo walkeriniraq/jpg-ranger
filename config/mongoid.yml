@@ -60,7 +60,7 @@ test:
     default:
       database: jpg_ranger_test
       hosts:
-        - localhost:27017
+        - 127.0.0.1:27017
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
@@ -72,5 +72,5 @@ special:
     default:
       database: jpg_ranger_special
       hosts:
-        - localhost:27017
+        - 127.0.0.1:27017
       options:
