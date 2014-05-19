@@ -1,5 +1,4 @@
 $(document).on 'page:change', ->
-  console.log 'LOADED'
   $('#fileupload').fileupload
     dataType: 'json'
     dropZone: $('#photo-upload-div')
@@ -23,3 +22,16 @@ $(document).on 'page:change', ->
       return
     $('.system-tag-container').append("<a href='/collection/tag/#{ ret }' class='tag label label-primary'>#{ret}</a>")
     $('.tag:not(.ui-draggable)').draggable(helper: 'clone');
+
+  $('.add-tag').click ->
+    elt = $(@)
+    $.post('/tag_photo', { tag: elt.data('tag'), id: $(@).data('id') }).done ->
+      $('.preview-tag-holder').append("<span class='label label-primary'>#{ elt.data('tag') }</span>")
+      elt.remove()
+
+  $('.preview-delete').click ->
+    ret = confirm 'Are you sure you want to delete this photo? This is permanent!'
+    return unless ret
+    $.post("/delete/#{$(@).data('id')}").done ->
+      console.log('OKAY')
+      location.href = '/'

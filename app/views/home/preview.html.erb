@@ -1,16 +1,30 @@
-<img class="photo-thumbnail" src="<%= medium_thumb_path @photo.id %>">
-<div class="photo-info" style="max-width: 1000px;">
-  <div class="pull-right"><%= @photo.uploader %></div>
-  <div><%= @photo.original_filename %></div>
-  <div><%= @photo.photo_time %></div>
-  <div class="pull-right"><%= @photo.file_hash %></div>
-  <div title="<%= @extra_exif %>"><%= @resolution %></div>
-  <div>
-    <% @photo.tags.each do |tag| %>
-      <a href="<%= tag_collection_path tag %>" class="tag label label-primary">
+<div class="row">
+  <div class="col-md-3">
+    <h4>Click to add tags</h4>
+    <% @tags.sort!.each do |tag| %>
+      <span class="label label-primary add-tag" data-tag="<%= tag %>" data-id="<%= @photo.id %>">
         <%= tag %>
-      </a>
+      </span>
     <% end %>
   </div>
+  <div class="col-md-9">
+    <img class="photo-thumbnail" src="<%= medium_thumb_path @photo.id %>">
+    <div class="photo-info" style="max-width: 1000px;">
+      <div class="pull-right"><%= @photo.uploader %></div>
+      <div><%= @photo.original_filename %></div>
+      <div><%= @photo.photo_time %></div>
+      <div class="pull-right"><%= @photo.file_hash %></div>
+      <div title="<%= @extra_exif %>"><%= @resolution %></div>
+      <div class="preview-tag-holder">
+        <% @photo.tags.sort!.each do |tag| %>
+          <span class="label label-primary"><%= tag %></span>
+        <% end %>
+      </div>
+      <div style="padding-top: 20px;">
+        <button class="btn btn-success preview-full-size">Full Size</button>
+        <button class="btn btn-warning preview-delete pull-right" data-id="<%= @photo.id %>">Delete</button>
+      </div>
 
+    </div>
+  </div>
 </div>
