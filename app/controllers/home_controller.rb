@@ -5,12 +5,24 @@ class HomeController < ApplicationController
 
   def index
     @photos = Photo.order_by(:upload_time.desc).limit(20)
-    @tags = Photo.distinct(:tags)
+    set_variables
   end
 
   def tag
     photo = Photo.find params[:id]
     photo.add_tag params[:tag]
+    render_json status: 'ok'
+  end
+
+  def tag_person
+    photo = Photo.find params[:id]
+    photo.add_person params[:tag]
+    render_json status: 'ok'
+  end
+
+  def tag_place
+    photo = Photo.find params[:id]
+    photo.add_place params[:tag]
     render_json status: 'ok'
   end
 

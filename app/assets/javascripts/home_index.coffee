@@ -7,10 +7,14 @@ $(document).on 'page:change', ->
   $('#photo-upload-div').click ->
     $('#fileupload').click()
 
-  $('.tag').draggable(helper: 'clone')
+  $('.tag, .person, .place').draggable(helper: 'clone')
 
   $('.photo').droppable(hoverClass: 'drop-highlight', drop: (evt, ui) ->
-    $.post('/tag_photo', { tag: ui.helper.text(), id: $(@).data('id') })
+    url = switch
+      when ui.draggable.hasClass('tag') then '/tag_photo'
+      when ui.draggable.hasClass('person') then '/tag_photo_person'
+      when ui.draggable.hasClass('place') then '/tag_photo_place'
+    $.post(url, { tag: ui.helper.text(), id: $(@).data('id') })
   )
 
   $('.new-tag-btn').click ->
@@ -18,10 +22,30 @@ $(document).on 'page:change', ->
     return unless ret?
     ret = ret.trim().toLowerCase()
     if(ret.length < 1)
-      alert 'Please enter a value for the new tag - tag not created'
+      alert 'Please enter a value for the new tag'
       return
     $('.system-tag-container').append("<a href='/collection/tag/#{ ret }' class='tag label label-primary'>#{ret}</a>")
     $('.tag:not(.ui-draggable)').draggable(helper: 'clone');
+
+  $('.new-place-btn').click ->
+    ret = prompt('What new place?')
+    return unless ret?
+    ret = ret.trim().toLowerCase()
+    if(ret.length < 1)
+      alert 'Please enter a value for the new place'
+      return
+    $('.system-place-container').append("<a href='/collection/place/#{ ret }' class='place label label-primary'>#{ret}</a>")
+    $('.place:not(.ui-draggable)').draggable(helper: 'clone');
+
+  $('.new-person-btn').click ->
+    ret = prompt('Who do you want to add?')
+    return unless ret?
+    ret = ret.trim().toLowerCase()
+    if(ret.length < 1)
+      alert 'Please enter a name for the person'
+      return
+    $('.system-person-container').append("<a href='/collection/person/#{ ret }' class='person label label-primary'>#{ret}</a>")
+    $('.person:not(.ui-draggable)').draggable(helper: 'clone');
 
   $('.add-tag').click ->
     elt = $(@)

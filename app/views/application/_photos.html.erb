@@ -4,7 +4,7 @@
       <div class="col-md-3">
         <div class="photo img-thumbnail" data-id="<%= photo.id %>">
           <div style="text-align: center;">
-            <a href="<%= preview_path photo.id %>" title="<%= photo.original_filename %>" target="preview">
+            <a href="<%= preview_path photo.id %>" title="<%= photo.original_filename %>">
               <img class="photo-thumbnail" src="<%= small_thumb_path photo.id %>">
             </a>
           </div>
@@ -14,6 +14,18 @@
               <a href="<%= tag_collection_path tag %>" class="tag label label-primary">
                 <%= tag %>
               </a>
+            <% end %>
+            <% photo.places.each do |place| %>
+              <a href="<%= place_collection_path place %>" class="place label label-primary">
+                <%= place %>
+              </a>
+            <% end %>
+            <% unless photo.people.nil? %>
+              <% photo.people.each do |place| %>
+                <a href="<%= person_collection_path place %>" class="person label label-primary">
+                  <%= place %>
+                </a>
+              <% end %>
             <% end %>
           </div>
         </div>

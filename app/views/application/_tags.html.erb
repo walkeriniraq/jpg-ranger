@@ -11,3 +11,29 @@
 <div style="padding-top: 20px;">
   <button class="btn btn-success new-tag-btn">Add a new tag</button>
 </div>
+
+<h3>People</h3>
+
+<div class="system-person-container">
+  <% @people.each do |tag| %>
+    <a href="<%= person_collection_path tag %>" class="person label label-primary">
+      <%= tag %>
+    </a>
+  <% end %>
+</div>
+<div style="padding-top: 20px;">
+  <button class="btn btn-success new-person-btn">Add a new person</button>
+</div>
+
+<h3>Places</h3>
+
+<div class="system-place-container">
+  <% @places.each do |tag| %>
+    <a href="<%= place_collection_path tag %>" class="place label label-primary">
+      <%= tag %>
+    </a>
+  <% end %>
+</div>
+<div style="padding-top: 20px;">
+  <button class="btn btn-success new-place-btn">Add a new place</button>
+</div>
