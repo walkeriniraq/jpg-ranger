@@ -20,7 +20,24 @@ class PhotosController < ApplicationController
   end
 
   def create
-
+    return render_json status: 'Must provide photos to upload.' if params[:files].blank?
+    files = params[:files].map do |file|
+      context = PhotoUploadContext.new(file, PhotoMetadataStore.new, PhotoDiskStore.new)
+      ret = context.call
+      if ret[:photo].nil?
+        { status: ret[:status] }
+      else
+        unless params[:tag].nil?
+          ret[:photo].add_tag params[:tag]
+        end
+        { status: ret[:status], id: ret[:photo].id }
+      end
+    end
+    if browser.ie?
+      render text: { status: 'ok', files: files }.to_json
+    else
+      render_json status: 'ok', files: files
+    end
   end
 
   def destroy
