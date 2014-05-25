@@ -10,9 +10,9 @@
     <div {{bind-attr title=formattedPhotoTime}}>{{prettyPhotoTime}}</div>
     <div class="tag-holder" style="text-align: center">
       {{#each tags}}
-        <a href="tag" class="tag label label-primary">
+        {{#link-to 'tag' this class="tag label label-primary"}}
           {{this}}
-        </a>
+        {{/link-to}}
       {{/each}}
     </div>
   </div>
