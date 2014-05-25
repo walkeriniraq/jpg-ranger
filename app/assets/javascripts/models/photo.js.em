@@ -9,7 +9,7 @@ class JpgRanger.Photo extends DS.Model
   places: DS.attr()
 
   small_photo_path: (->
-    "/small_thumb/#{@get('id')}"
+    "/photos/#{@get('id')}/small_thumb"
   ).property('id')
 
   momentPhotoTime: (->

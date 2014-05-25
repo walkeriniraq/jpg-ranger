@@ -33,29 +33,6 @@ class HomeController < ApplicationController
     render_json status: 'ok'
   end
 
-  def photo
-    photo = Photo.find params[:id]
-    send_file PhotoDiskStore.new.photo_path photo.filename
-  end
-
-  def delete
-    photo = Photo.find params[:id]
-    store = PhotoDiskStore.new
-    FileUtils.rm [store.photo_path(photo.filename), store.sm_thumb_path(photo.filename), store.md_thumb_path(photo.filename)]
-    photo.delete
-    render :text => 'deleted'
-  end
-
-  def small_thumb
-    photo = Photo.find params[:id]
-    send_file PhotoDiskStore.new.sm_thumb_path photo.filename
-  end
-
-  def medium_thumb
-    photo = Photo.find params[:id]
-    send_file PhotoDiskStore.new.md_thumb_path(photo.filename), disposition: 'inline'
-  end
-
   def preview
     @photo = Photo.find params[:id]
     exif = @photo.exif PhotoDiskStore.new
