@@ -8,24 +8,12 @@ class JpgRanger.Photo extends DS.Model
   people: DS.attr()
   places: DS.attr()
 
-  small_photo_path: (->
-    "/photos/#{@get('id')}/small_thumb"
-  ).property('id')
+  small_photo_path: ~> "/photos/#{@id}/small_thumb"
 
-  medium_photo_path: (->
-    "/photos/#{@get('id')}/medium_thumb"
-  ).property('id')
+  medium_photo_path: ~> "/photos/#{@id}/medium_thumb"
 
-  momentPhotoTime: (->
-    moment @get('photoTime')
-  ).property 'photoTime'
+  momentPhotoTime: ~> moment @photoTime
 
-  prettyPhotoTime: (->
-    time = @get 'momentPhotoTime'
-    return time.fromNow() if time.isValid()
-  ).property 'momentPhotoTime'
+  prettyPhotoTime: ~> return @momentPhotoTime.fromNow() if @momentPhotoTime.isValid()
 
-  formattedPhotoTime: (->
-    time = @get 'momentPhotoTime'
-    return time.format("dddd MMMM Do YYYY - h:mm a") if time.isValid()
-  ).property 'momentPhotoTime'
+  formattedPhotoTime: ~> return @momentPhotoTime.format("dddd MMMM Do YYYY - h:mm a") if @momentPhotoTime.isValid()

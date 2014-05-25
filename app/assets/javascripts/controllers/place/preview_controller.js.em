@@ -1,0 +1,1 @@
+class JpgRanger.PlacePreviewController extends Ember.ObjectController

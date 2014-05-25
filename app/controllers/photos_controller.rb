@@ -8,6 +8,14 @@ class PhotosController < ApplicationController
     unless tag.blank?
       query = query.where(:tags.in => [tag])
     end
+    place = params[:place].andand.downcase.andand.strip
+    unless place.blank?
+      query = query.where(:places.in => [place])
+    end
+    person = params[:person].andand.downcase.andand.strip
+    unless person.blank?
+      query = query.where(:people.in => [person])
+    end
     respond_with query
   end
 

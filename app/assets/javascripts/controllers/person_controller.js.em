@@ -1,0 +1,1 @@
+class JpgRanger.PersonController extends Ember.ArrayController
