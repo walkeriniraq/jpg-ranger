@@ -11,3 +11,17 @@ class JpgRanger.Photo extends DS.Model
   small_photo_path: (->
     "/small_thumb/#{@get('id')}"
   ).property('id')
+
+  momentPhotoTime: (->
+    moment @get('photoTime')
+  ).property 'photoTime'
+
+  prettyPhotoTime: (->
+    time = @get 'momentPhotoTime'
+    return time.fromNow() if time.isValid()
+  ).property 'momentPhotoTime'
+
+  formattedPhotoTime: (->
+    time = @get 'momentPhotoTime'
+    return time.format("dddd MMMM Do YYYY - h:mm a") if time.isValid()
+  ).property 'momentPhotoTime'

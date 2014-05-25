@@ -7,7 +7,7 @@
         <img class="photo-thumbnail" {{bind-attr src=small_photo_path}}>
       </a>
     </div>
-    <div>{{photoTime}}</div>
+    <div {{bind-attr title=formattedPhotoTime}}>{{prettyPhotoTime}}</div>
     <div class="tag-holder" style="text-align: center">
       {{#each tags}}
         <a href="tag" class="tag label label-primary">
