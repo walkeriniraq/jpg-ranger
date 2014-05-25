@@ -1,9 +1,9 @@
 {{#each}}
   <div class="photo img-thumbnail" data-id="<%= photo.id %>">
     <div style="text-align: center;">
-      <a {{bind-attr href=id title=original_filename}}>
+      {{#link-to 'tag.preview' id title=originalFilename}}
         <img class="photo-thumbnail" {{bind-attr src=small_photo_path}}>
-      </a>
+      {{/link-to}}
     </div>
     <div {{bind-attr title=formattedPhotoTime}}>{{prettyPhotoTime}}</div>
     <div class="tag-holder" style="text-align: center">

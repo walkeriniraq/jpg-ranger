@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-3">
+    <h4>Click to add tags</h4>
+    <div style="padding-top: 20px;">
+      <button class="btn btn-success preview-new-tag">Add a new tag</button>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <img class="photo-thumbnail" {{bind-attr src=medium_photo_path}}>
+    <div class="photo-info" style="max-width: 1000px;">
+      <div class="pull-right">{{uploader}}</div>
+      <div>{{originalFilename}}</div>
+      <div>{{formattedPhotoTime}}</div>
+      <div class="pull-right">file hash</div>
+      <div title="extra exif data goes here">resolution</div>
+      <div class="preview-tag-holder">
+        {{#each tags}}
+          {{#link-to 'tag' this class="tag label label-primary"}}
+            {{this}}
+          {{/link-to}}
+        {{/each}}
+      </div>
+      <div style="padding-top: 20px;">
+        <button class="btn btn-success preview-full-size">Full Size</button>
+        <button class="btn btn-warning preview-delete pull-right" data-id="<%= @photo.id %>">Delete</button>
+      </div>
+
+    </div>
+  </div>
+</div>

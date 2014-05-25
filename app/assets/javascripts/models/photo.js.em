@@ -12,6 +12,10 @@ class JpgRanger.Photo extends DS.Model
     "/photos/#{@get('id')}/small_thumb"
   ).property('id')
 
+  medium_photo_path: (->
+    "/photos/#{@get('id')}/medium_thumb"
+  ).property('id')
+
   momentPhotoTime: (->
     moment @get('photoTime')
   ).property 'photoTime'
