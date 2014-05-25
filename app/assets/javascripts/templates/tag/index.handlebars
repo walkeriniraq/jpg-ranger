@@ -1,29 +1,12 @@
 <h1>{{controllers.tag.tag_name}}</h1>
 
 {{#each}}
-  <div class="photo img-thumbnail" data-id="<%= photo.id %>">
+  <div class="photo img-thumbnail">
     <div style="text-align: center;">
       {{#link-to 'tag.preview' id title=originalFilename}}
         <img class="photo-thumbnail" {{bind-attr src=small_photo_path}}>
       {{/link-to}}
     </div>
-    <div {{bind-attr title=formattedPhotoTime}}>{{prettyPhotoTime}}</div>
-    <div class="tag-holder" style="text-align: center">
-      {{#each people}}
-        {{#link-to 'person' this class="person label label-primary"}}
-          {{this}}
-        {{/link-to}}
-      {{/each}}
-      {{#each tags}}
-        {{#link-to 'tag' this class="tag label label-primary"}}
-          {{this}}
-        {{/link-to}}
-      {{/each}}
-      {{#each places}}
-        {{#link-to 'place' this class="place label label-primary"}}
-          {{this}}
-        {{/link-to}}
-      {{/each}}
-    </div>
+    {{partial 'thumb_details'}}
   </div>
 {{/each}}

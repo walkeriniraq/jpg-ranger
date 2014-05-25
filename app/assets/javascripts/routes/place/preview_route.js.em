@@ -1,3 +1,1 @@
-class JpgRanger.PlacePreviewRoute extends Ember.Route
-  model: (params) ->
-    @store.find 'photo', params.id
+class JpgRanger.PlacePreviewRoute extends JpgRanger*.PhotoRoute

@@ -1,0 +1,1 @@
+class JpgRanger.RecentPreviewController extends Ember.ObjectController
