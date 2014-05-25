@@ -14,8 +14,8 @@ class JpgRanger.Photo extends DS.Model
 
   medium_photo_path: ~> "/photos/#{@id}/medium_thumb"
 
-  momentPhotoTime: ~> moment @photoTime
+  moment_photo_time: ~> moment @photo_time
 
-  prettyPhotoTime: ~> return @momentPhotoTime.fromNow() if @momentPhotoTime.isValid()
+  pretty_photo_time: ~> return @moment_photo_time.fromNow() if @moment_photo_time.isValid()
 
-  formattedPhotoTime: ~> return @momentPhotoTime.format("dddd MMMM Do YYYY - h:mm a") if @momentPhotoTime.isValid()
+  formatted_photo_time: ~> return @moment_photo_time.format("dddd MMMM Do YYYY - h:mm a") if @moment_photo_time.isValid()

@@ -2,26 +2,26 @@
   <div class="col-md-3">
     <h4>Click to add</h4>
     <h5>People</h5>
+    <button class="btn btn-success btn-xs" {{action 'create_person'}}>Create new person</button>
     {{#each person in controllers.application.master_people_list}}
       <span class="person label label-primary" {{action 'add_person' this person }}>
         {{person}}
       </span>
     {{/each}}
-    <h5>Places</h5>
+    <h5 style="margin-top: 2em;">Places</h5>
+    <button class="btn btn-success btn-xs" {{action 'create_place'}}>Create new place</button>
     {{#each place in controllers.application.master_places_list}}
       <span class="place label label-primary" {{action 'add_place' this place }}>
         {{place}}
       </span>
     {{/each}}
-    <h5>Tags</h5>
+    <h5 style="margin-top: 2em;">Tags</h5>
+    <button class="btn btn-success btn-xs" {{action 'create_tag'}}>Create new tag</button>
     {{#each tag in controllers.application.master_tags_list}}
       <span class="tag label label-primary" {{action 'add_tag' this tag }}>
         {{tag}}
       </span>
     {{/each}}
-    <div style="padding-top: 20px;">
-      <button class="btn btn-success preview-new-tag">Add a new tag</button>
-    </div>
   </div>
   <div class="col-md-9">
     <img class="photo-thumbnail" {{bind-attr src=medium_photo_path}}>
@@ -29,7 +29,7 @@
     <div class="photo-info" style="max-width: 1000px;">
       <div class="pull-right">{{uploader}}</div>
       <div>{{original_filename}}</div>
-      <div>{{formattedPhotoTime}}</div>
+      <div>{{formatted_photo_time}}</div>
       <div class="pull-right">{{file_hash}}</div>
       <div title="extra exif data goes here">{{resolution}}</div>
       <div class="preview-tag-holder">

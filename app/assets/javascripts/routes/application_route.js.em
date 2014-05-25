@@ -1,6 +1,33 @@
 class JpgRanger.ApplicationRoute extends Ember.Route
 
   actions:
+    create_person: ->
+      ret = prompt('Who do you want to add?')
+      return unless ret?
+      ret = ret.trim().toLowerCase()
+      if(ret.length < 1)
+        alert 'Please enter a name for the new person'
+        return
+      @controller.master_people_list.pushObject ret
+
+    create_place: ->
+      ret = prompt('What is the name of the place?')
+      return unless ret?
+      ret = ret.trim().toLowerCase()
+      if(ret.length < 1)
+        alert 'Please enter a value for the new place'
+        return
+      @controller.master_places_list.pushObject ret
+
+    create_tag: ->
+      ret = prompt('Type the value of the new tag')
+      return unless ret?
+      ret = ret.trim().toLowerCase()
+      if(ret.length < 1)
+        alert 'Please enter a value for the new tag'
+        return
+      @controller.master_tags_list.pushObject ret
+
     add_person: (photo, person) ->
       photo.people = [] unless photo.people?
       photo.people.pushObject person
