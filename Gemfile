@@ -22,7 +22,7 @@ gem 'therubyrhino'
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -41,6 +41,11 @@ gem 'puma'
 gem 'bcrypt-ruby'
 gem 'rmagick4j'
 gem 'exifr'
+
+gem 'ember-rails'
+gem 'ember-source', '~> 1.5.0'
+
+gem 'ember_script-rails', github: 'ghempton/ember-script-rails'
 
 group :test do
   gem 'rspec'

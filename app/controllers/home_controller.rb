@@ -4,8 +4,15 @@ require 'pathname'
 class HomeController < ApplicationController
 
   def index
+  end
+
+  def backup
     @photos = Photo.order_by(:upload_time.desc).limit(20)
     set_variables
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @photos }
+    end
   end
 
   def tag

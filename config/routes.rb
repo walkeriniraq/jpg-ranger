@@ -16,4 +16,6 @@ JpgRanger::Application.routes.draw do
   get 'collection/person/:person', to: 'collection#person', as: 'person_collection'
   get 'collection/place/:place', to: 'collection#place', as: 'place_collection'
 
+  resources :photos, except: [:new, :edit]
+
 end
