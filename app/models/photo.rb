@@ -6,6 +6,7 @@ class Photo
   field :up, as: :uploader, type: String
   field :ut, as: :upload_time, type: Time
   field :pt, as: :photo_time, type: Time
+  field :r, as: :resolution, type: String
   field :tags, type: Array
   field :p, as: :people, type: Array
   field :pl, as: :places, type: Array

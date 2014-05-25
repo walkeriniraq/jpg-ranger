@@ -3,7 +3,7 @@
 {{#each}}
   <div class="photo img-thumbnail">
     <div style="text-align: center;">
-      {{#link-to 'recent.preview' id title=originalFilename}}
+      {{#link-to 'recent.preview' id title=original_filename}}
         <img class="photo-thumbnail" {{bind-attr src=small_photo_path}}>
       {{/link-to}}
     </div>

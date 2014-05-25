@@ -29,11 +29,13 @@ class PhotoUploadContext
       if orientation
         img = orientation.transform_rmagick(img)
       end
-      photo.update_attributes(photo_time: exif.date_time) unless exif.date_time.nil?
+      attr = { resolution: "#{exif.width} x #{exif.height}" }
+      attr[:photo_time] = exif.date_time unless exif.date_time.nil?
+      photo.update_attributes(attr)
     end
     img.resize_to_fit(150, 150).write "tmp/#{photo.filename}"
     FileUtils.move "tmp/#{photo.filename}", @disk_store.sm_thumb_path(photo.filename)
-    img.resize_to_fit(1000, 1000).write "tmp/#{photo.filename}"
+    img.resize_to_fit(800, 800).write "tmp/#{photo.filename}"
     FileUtils.move "tmp/#{photo.filename}", @disk_store.md_thumb_path(photo.filename)
     { status: 'ok', photo: photo }
   rescue EXIFR::MalformedJPEG

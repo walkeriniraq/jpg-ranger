@@ -1,12 +1,14 @@
 # for more details see: http://emberjs.com/guides/models/defining-models/
 
 class JpgRanger.Photo extends DS.Model
-  originalFilename: DS.attr 'string'
+  original_filename: DS.attr 'string'
   uploader: DS.attr 'string'
-  photoTime: DS.attr 'date'
+  photo_time: DS.attr 'date'
+  resolution: DS.attr 'string'
   tags: DS.attr()
   people: DS.attr()
   places: DS.attr()
+  file_hash: DS.attr 'string'
 
   small_photo_path: ~> "/photos/#{@id}/small_thumb"
 

@@ -10,7 +10,10 @@
 #= require_self
 #= require jpg_ranger
 
-# for more details see: http://emberjs.com/guides/application/
+$.ajaxSetup
+  beforeSend: (jqXHR) ->
+    jqXHR.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+
 window.JpgRanger = Ember.Application.create(
   LOG_TRANSITIONS: true
 )

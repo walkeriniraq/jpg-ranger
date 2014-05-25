@@ -7,10 +7,4 @@ class ApplicationController < ActionController::Base
     render json: hash
   end
 
-  def set_variables
-    @tags = Photo.distinct(:tags)
-    @people = Photo.distinct(:people)
-    @places = Photo.distinct(:places)
-  end
-
 end

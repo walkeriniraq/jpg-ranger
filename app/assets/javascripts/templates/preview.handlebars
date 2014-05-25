@@ -1,21 +1,50 @@
 <div class="row">
   <div class="col-md-3">
-    <h4>Click to add tags</h4>
+    <h4>Click to add</h4>
+    <h5>People</h5>
+    {{#each person in controllers.application.master_people_list}}
+      <span class="person label label-primary" {{action 'add_person' this person }}>
+        {{person}}
+      </span>
+    {{/each}}
+    <h5>Places</h5>
+    {{#each place in controllers.application.master_places_list}}
+      <span class="place label label-primary" {{action 'add_place' this place }}>
+        {{place}}
+      </span>
+    {{/each}}
+    <h5>Tags</h5>
+    {{#each tag in controllers.application.master_tags_list}}
+      <span class="tag label label-primary" {{action 'add_tag' this tag }}>
+        {{tag}}
+      </span>
+    {{/each}}
     <div style="padding-top: 20px;">
       <button class="btn btn-success preview-new-tag">Add a new tag</button>
     </div>
   </div>
   <div class="col-md-9">
     <img class="photo-thumbnail" {{bind-attr src=medium_photo_path}}>
+
     <div class="photo-info" style="max-width: 1000px;">
       <div class="pull-right">{{uploader}}</div>
-      <div>{{originalFilename}}</div>
+      <div>{{original_filename}}</div>
       <div>{{formattedPhotoTime}}</div>
-      <div class="pull-right">file hash</div>
-      <div title="extra exif data goes here">resolution</div>
+      <div class="pull-right">{{file_hash}}</div>
+      <div title="extra exif data goes here">{{resolution}}</div>
       <div class="preview-tag-holder">
+        {{#each people}}
+          {{#link-to 'person' this class="person label label-primary"}}
+            {{this}}
+          {{/link-to}}
+        {{/each}}
         {{#each tags}}
           {{#link-to 'tag' this class="tag label label-primary"}}
+            {{this}}
+          {{/link-to}}
+        {{/each}}
+        {{#each places}}
+          {{#link-to 'place' this class="place label label-primary"}}
             {{this}}
           {{/link-to}}
         {{/each}}

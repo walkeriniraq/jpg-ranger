@@ -6,14 +6,14 @@ class HomeController < ApplicationController
   def index
   end
 
-  def backup
-    @photos = Photo.order_by(:upload_time.desc).limit(20)
-    set_variables
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @photos }
-    end
+  def globals
+    render_json tags: Photo.distinct(:tags), people: Photo.distinct(:people), places: Photo.distinct(:places)
   end
+
+
+
+
+
 
   def tag
     photo = Photo.find params[:id]
