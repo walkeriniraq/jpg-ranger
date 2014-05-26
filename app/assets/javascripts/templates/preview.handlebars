@@ -2,21 +2,21 @@
   <div class="col-md-3">
     <h4>Click to add</h4>
     <h5>People</h5>
-    <button class="btn btn-success btn-xs" {{action 'create_person'}}>Create new person</button>
-    {{#each person in controllers.application.master_people_list}}
+    <button class="btn btn-primary btn-xs" {{action 'create_person'}}>Create new person</button>
+    {{#each person in master_people_list}}
       <span class="person label label-primary" {{action 'add_person' this person }}>
         {{person}}
       </span>
     {{/each}}
     <h5 style="margin-top: 2em;">Places</h5>
-    <button class="btn btn-success btn-xs" {{action 'create_place'}}>Create new place</button>
+    <button class="btn btn-primary btn-xs" {{action 'create_place'}}>Create new place</button>
     {{#each place in controllers.application.master_places_list}}
       <span class="place label label-primary" {{action 'add_place' this place }}>
         {{place}}
       </span>
     {{/each}}
     <h5 style="margin-top: 2em;">Tags</h5>
-    <button class="btn btn-success btn-xs" {{action 'create_tag'}}>Create new tag</button>
+    <button class="btn btn-primary btn-xs" {{action 'create_tag'}}>Create new tag</button>
     {{#each tag in controllers.application.master_tags_list}}
       <span class="tag label label-primary" {{action 'add_tag' this tag }}>
         {{tag}}
@@ -32,21 +32,21 @@
       <div>{{formatted_photo_time}}</div>
       <div class="pull-right">{{file_hash}}</div>
       <div title="extra exif data goes here">{{resolution}}</div>
-      <div class="preview-tag-holder">
-        {{#each people}}
-          {{#link-to 'person' this class="person label label-primary"}}
-            {{this}}
-          {{/link-to}}
+      <div >
+        {{#each person in people}}
+          <span class="person label" {{action 'remove_person' this person }}>
+            {{person}}
+          </span>
         {{/each}}
-        {{#each tags}}
-          {{#link-to 'tag' this class="tag label label-primary"}}
-            {{this}}
-          {{/link-to}}
+        {{#each place in places}}
+          <span class="place label" {{action 'remove_place' this place }}>
+            {{place}}
+          </span>
         {{/each}}
-        {{#each places}}
-          {{#link-to 'place' this class="place label label-primary"}}
-            {{this}}
-          {{/link-to}}
+        {{#each tag in tags}}
+          <span class="tag label" {{action 'remove_tag' this tag }}>
+            {{tag}}
+          </span>
         {{/each}}
       </div>
       <div style="padding-top: 20px;">

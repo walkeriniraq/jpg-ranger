@@ -45,9 +45,30 @@ class JpgRanger.ApplicationRoute extends Ember.Route
         photo.places.removeObject place
       
     add_tag: (photo, tag) ->
+      photo.tags = [] unless photo.tags?
       photo.tags.pushObject tag
       photo.save().catch (err) ->
         console.log err
         alert 'There was a problem saving to the database.'
         photo.tags.removeObject tag
-      
+
+    remove_person: (photo, person) ->
+      photo.people.removeObject person
+      photo.save().catch (err) ->
+        console.log err
+        alert 'There was a problem saving to the database.'
+        photo.people.pushObject person
+
+    remove_place: (photo, place) ->
+      photo.places.removeObject place
+      photo.save().catch (err) ->
+        console.log err
+        alert 'There was a problem saving to the database.'
+        photo.places.pushObject place
+
+    remove_tag: (photo, tag) ->
+      photo.tags.removeObject tag
+      photo.save().catch (err) ->
+        console.log err
+        alert 'There was a problem saving to the database.'
+        photo.tags.pushObject tag

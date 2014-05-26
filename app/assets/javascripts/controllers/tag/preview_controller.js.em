@@ -1,2 +1,1 @@
-class JpgRanger.TagPreviewController extends Ember.ObjectController
-  needs: 'application'
+class JpgRanger.TagPreviewController extends JpgRanger*.BasePreviewController

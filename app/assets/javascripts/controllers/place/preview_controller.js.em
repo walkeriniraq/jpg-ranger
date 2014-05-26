@@ -1,2 +1,1 @@
-class JpgRanger.PlacePreviewController extends Ember.ObjectController
-  needs: 'application'
+class JpgRanger.PlacePreviewController extends JpgRanger*.BasePreviewController
