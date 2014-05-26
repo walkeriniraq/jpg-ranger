@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.4'
+gem 'rails'
 
 # Use jdbcsqlite3 as the database for Active Record
 # gem 'activerecord-jdbcsqlite3-adapter'
@@ -46,6 +46,8 @@ gem 'ember-rails'
 gem 'ember-source', '~> 1.5.0'
 
 gem 'ember_script-rails', github: 'ghempton/ember-script-rails'
+
+gem 'tzinfo-data'
 
 group :test do
   gem 'rspec'

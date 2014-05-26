@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
 
   def update
     photo = Photo.find(params[:id])
-    photo.update_attributes params.require(:photo).permit(:tags, :places, :people, tags: [], places: [], people: [])
+    photo.update_attributes params.require(:photo).permit(tags: [], places: [], people: [])
     respond_with photo
   end
 
