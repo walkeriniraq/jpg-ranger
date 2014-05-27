@@ -2,21 +2,18 @@
   <div class="col-md-3">
     <h4>Click to add</h4>
     <h5>People</h5>
-    <button class="btn btn-primary btn-xs" {{action 'create_person'}}>Create new person</button>
     {{#each person in master_people_list}}
       <span class="person label label-primary" {{action 'add_person' this person }}>
         {{person}}
       </span>
     {{/each}}
     <h5 style="margin-top: 2em;">Places</h5>
-    <button class="btn btn-primary btn-xs" {{action 'create_place'}}>Create new place</button>
     {{#each place in master_places_list}}
       <span class="place label label-primary" {{action 'add_place' this place }}>
         {{place}}
       </span>
     {{/each}}
     <h5 style="margin-top: 2em;">Tags</h5>
-    <button class="btn btn-primary btn-xs" {{action 'create_tag'}}>Create new tag</button>
     {{#each tag in master_tags_list}}
       <span class="tag label label-primary" {{action 'add_tag' this tag }}>
         {{tag}}
@@ -50,10 +47,14 @@
         {{/each}}
       </div>
       <div style="padding-top: 20px;">
-        <button class="btn btn-success preview-full-size">Full Size</button>
-        <button class="btn btn-warning preview-delete pull-right" data-id="<%= @photo.id %>">Delete</button>
+        <button class="btn person" {{action 'add_person' this}}>Add person</button>
+        <button class="btn place" {{action 'add_place' this}}>Add place</button>
+        <button class="btn tag" {{action 'add_tag' this}}>Add tag</button>
+        <div class="pull-right">
+          <button class="btn btn-success">Full Size</button>
+          <button class="btn btn-warning">Delete</button>
+        </div>
       </div>
-
     </div>
   </div>
 </div>
