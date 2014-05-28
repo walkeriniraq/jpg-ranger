@@ -1,0 +1,10 @@
+{{#each photo in this}}
+  <div class="photo img-thumbnail">
+    <div style="text-align: center;">
+      {{#link-to preview_route photo.id title=photo.original_filename}}
+        <img class="photo-thumbnail" {{bind-attr src=photo.small_photo_path}}>
+      {{/link-to}}
+    </div>
+    {{render 'tag_holder' photo}}
+  </div>
+{{/each}}
