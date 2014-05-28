@@ -19,6 +19,30 @@
   </div>
 </div>
 
-<div class="main container">
+<div class="main container" style="padding-bottom: 11em;">
   {{outlet}}
+</div>
+
+<div id="bottom-tag-bar">
+  <div>
+    {{#each master_people_list}}
+      {{#link-to 'person' this class="person label label-primary"}}
+        {{this}}
+      {{/link-to}}
+    {{/each}}
+  </div>
+  <div>
+    {{#each master_places_list}}
+      {{#link-to 'place' this class="place label label-primary"}}
+        {{this}}
+      {{/link-to}}
+    {{/each}}
+  </div>
+  <div>
+    {{#each master_tags_list}}
+      {{#link-to 'tag' this class="tag label label-primary"}}
+        {{this}}
+      {{/link-to}}
+    {{/each}}
+  </div>
 </div>

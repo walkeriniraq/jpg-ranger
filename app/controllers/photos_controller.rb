@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
   respond_to :json
 
   def index # find all
-    query = Photo.order_by(:upload_time.desc).limit(20)
+    query = Photo.order_by(:upload_time.desc).limit(100)
     tag = params[:tag].andand.downcase.andand.strip
     unless tag.blank?
       query = query.where(:tags.in => [tag])

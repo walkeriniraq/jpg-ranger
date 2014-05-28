@@ -53,3 +53,16 @@
   background-color: #EEFFEE;
   border-radius: 2px;
 }
+
+#bottom-tag-bar {
+  position: fixed;
+  bottom: 0;
+  height: 10em;
+  background-color: #f8f8f8;
+  width: 100%;
+  text-align: center;
+  padding: 0.5em;
+  div {
+    padding: 0.5em 1em;
+  }
+}
