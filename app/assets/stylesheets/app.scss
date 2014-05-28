@@ -9,7 +9,7 @@
 }
 
 .photo {
-
+  min-width: 12em;
 }
 
 .tag {
@@ -44,4 +44,12 @@
 
 .add-tag {
   cursor: pointer;
+}
+
+.mini-upload {
+  border: 1px solid #008B00;
+  padding: 8px 40px;
+  text-align: center;
+  background-color: #EEFFEE;
+  border-radius: 2px;
 }

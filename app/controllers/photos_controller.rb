@@ -37,9 +37,9 @@ class PhotosController < ApplicationController
       if ret[:photo].nil?
         { status: ret[:status] }
       else
-        unless params[:tag].nil?
-          ret[:photo].add_tag params[:tag]
-        end
+        ret[:photo].add_person params[:person] unless params[:person].nil?
+        ret[:photo].add_place params[:place] unless params[:place].nil?
+        ret[:photo].add_tag params[:tag] unless params[:tag].nil?
         { status: ret[:status], id: ret[:photo].id }
       end
     end

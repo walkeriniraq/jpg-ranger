@@ -1,1 +1,2 @@
-class JpgRanger.PlaceIndexView extends Ember.View
+class JpgRanger.PlaceIndexView extends JpgRanger*.UploadView
+  extra_form_data: ~> { place: @controller.place_name }

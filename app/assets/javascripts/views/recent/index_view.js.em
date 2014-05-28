@@ -1,1 +1,1 @@
-class JpgRanger.RecentIndexView extends Ember.View
+class JpgRanger.RecentIndexView extends JpgRanger*.UploadView

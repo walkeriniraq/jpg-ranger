@@ -1,6 +1,6 @@
 class JpgRanger.PersonRoute extends Ember.Route
   model: (params) ->
-    @last_person_name = params.person_name.charAt(0).toUpperCase() + params.person_name.slice(1)
+    @last_person_name = params.person_name
     @store.find 'photo', { person: params.person_name }
 
   setupController: (controller, model) ->

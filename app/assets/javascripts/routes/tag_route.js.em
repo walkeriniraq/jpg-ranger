@@ -1,6 +1,6 @@
 class JpgRanger.TagRoute extends Ember.Route
   model: (params) ->
-    @last_tag_name = params.tag_name.charAt(0).toUpperCase() + params.tag_name.slice(1)
+    @last_tag_name = params.tag_name
     @store.find 'photo', { tag: params.tag_name }
 
   setupController: (controller, model) ->
