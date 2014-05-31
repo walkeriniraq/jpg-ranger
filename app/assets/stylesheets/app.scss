@@ -9,19 +9,25 @@
 }
 
 .photo {
-  min-width: 12em;
+  min-width: 10em;
 }
 
 .tag {
   color: #535353;
-  background-color: #ffe1a3;
+  background-color: #ffeabb;
   cursor: pointer;
   z-index: 100;
 }
 
+.label {
+  font-size: 12px;
+  font-weight: 100;
+  margin-bottom: 0.2em;
+}
+
 .place {
   color: #535353;
-  background-color: #c4ffdb;
+  background-color: #b6f1be;
   cursor: pointer;
   z-index: 100;
 }
@@ -42,6 +48,12 @@
   display: inline-block;
 }
 
+@media (min-width: 991px) {
+  .main {
+    padding-left: 18em;
+  }
+}
+
 .add-tag {
   cursor: pointer;
 }
@@ -54,12 +66,13 @@
   border-radius: 2px;
 }
 
-#bottom-tag-bar {
+#tag-bar {
   position: fixed;
-  bottom: 0;
-  height: 10em;
+  left: 0;
+  height: 100%;
+  margin-top: -20px;
   background-color: #f8f8f8;
-  width: 100%;
+  width: 18em;
   text-align: center;
   padding: 0.5em;
   div {

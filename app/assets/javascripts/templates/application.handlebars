@@ -19,11 +19,7 @@
   </div>
 </div>
 
-<div class="main container" style="padding-bottom: 11em;">
-  {{outlet}}
-</div>
-
-<div id="bottom-tag-bar">
+<div id="tag-bar" class="hidden-sm hidden-xs">
   <div>
     {{#each master_people_list}}
       {{#link-to 'person' this class="person label label-primary"}}
@@ -46,3 +42,8 @@
     {{/each}}
   </div>
 </div>
+
+<div class="main container">
+  {{outlet}}
+</div>
+
