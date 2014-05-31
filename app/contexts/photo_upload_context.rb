@@ -36,7 +36,7 @@ class PhotoUploadContext
     end
     img.resize_to_fit(150, 150).write "tmp/#{photo.filename}"
     FileUtils.move "tmp/#{photo.filename}", @disk_store.sm_thumb_path(photo.filename)
-    img.resize_to_fit(800, 600).write "tmp/#{photo.filename}"
+    img.resize_to_fit(600, 800).write "tmp/#{photo.filename}"
     FileUtils.move "tmp/#{photo.filename}", @disk_store.md_thumb_path(photo.filename)
     { status: 'ok', photo: photo }
   rescue EXIFR::MalformedJPEG
