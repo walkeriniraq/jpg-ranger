@@ -1,1 +1,0 @@
-class JpgRanger.TagPreviewController extends JpgRanger*.BasePreviewController

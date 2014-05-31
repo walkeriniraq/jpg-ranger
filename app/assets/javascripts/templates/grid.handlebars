@@ -1,18 +1,16 @@
-<div class="container-fluid">
-  {{#each row in view.table}}
-    <div class="row">
-      {{#each photo in row}}
-        <div class="col-lg-2 col-md-3 col-sm-4" style="text-align: center; padding-top: 1em;">
-          <div class="photo img-thumbnail">
-            <div style="text-align: center;">
-              {{#link-to preview_route photo.id title=photo.original_filename}}
-                <img class="photo-thumbnail" {{bind-attr src=photo.small_photo_path}}>
-              {{/link-to}}
-            </div>
-            {{render 'tag_holder' photo}}
+{{#each row in view.table}}
+  <div class="row">
+    {{#each photo in row}}
+      <div class="col-lg-2 col-md-3 col-sm-4" style="text-align: center; padding-top: 1em;">
+        <div class="photo img-thumbnail">
+          <div style="text-align: center;">
+            {{#link-to preview_route photo.id title=photo.original_filename}}
+              <img class="photo-thumbnail" {{bind-attr src=photo.small_photo_path}}>
+            {{/link-to}}
           </div>
+          {{render 'tag_holder' photo}}
         </div>
-      {{/each}}
-    </div>
-  {{/each}}
-</div>
+      </div>
+    {{/each}}
+  </div>
+{{/each}}

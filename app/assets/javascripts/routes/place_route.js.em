@@ -6,3 +6,7 @@ class JpgRanger.PlaceRoute extends Ember.Route
   setupController: (controller, model) ->
     @_super controller, model
     controller.set('place_name', @last_place_name)
+
+class JpgRanger.PlacePreviewRoute extends JpgRanger*.BasePhotoRoute
+
+class JpgRanger.PlaceFullRoute extends JpgRanger*.BasePhotoRoute

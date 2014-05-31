@@ -6,3 +6,7 @@ class JpgRanger.TagRoute extends Ember.Route
   setupController: (controller, model) ->
     @_super controller, model
     controller.set('tag_name', @last_tag_name)
+
+class JpgRanger.TagPreviewRoute extends JpgRanger*.BasePhotoRoute
+
+class JpgRanger.TagFullRoute extends JpgRanger*.BasePhotoRoute

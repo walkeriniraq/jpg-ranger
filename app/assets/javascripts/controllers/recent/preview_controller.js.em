@@ -1,1 +1,0 @@
-class JpgRanger.RecentPreviewController extends JpgRanger*.BasePreviewController

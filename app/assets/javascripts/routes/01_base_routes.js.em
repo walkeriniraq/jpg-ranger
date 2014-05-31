@@ -1,3 +1,3 @@
-class JpgRanger.PhotoRoute extends Ember.Route
+class JpgRanger.BasePhotoRoute extends Ember.Route
   model: (params) ->
     @store.find 'photo', params.id

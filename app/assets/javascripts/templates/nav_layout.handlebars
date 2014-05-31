@@ -1,4 +1,4 @@
-<div class="navbar navbar-default" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-id">
@@ -19,31 +19,32 @@
   </div>
 </div>
 
+<div class="navbar-spacer" style="height: 50px;"></div>
+
 <div id="tag-bar" class="hidden-sm hidden-xs">
   <div>
-    {{#each master_people_list}}
-      {{#link-to 'person' this class="person label label-primary"}}
+    {{#each controllers.application.master_people_list}}
+      {{#link-to 'person' this class="person tag-label"}}
         {{this}}
       {{/link-to}}
     {{/each}}
   </div>
   <div>
-    {{#each master_places_list}}
-      {{#link-to 'place' this class="place label label-primary"}}
+    {{#each controllers.application.master_places_list}}
+      {{#link-to 'place' this class="place tag-label"}}
         {{this}}
       {{/link-to}}
     {{/each}}
   </div>
   <div>
-    {{#each master_tags_list}}
-      {{#link-to 'tag' this class="tag label label-primary"}}
+    {{#each controllers.application.master_tags_list}}
+      {{#link-to 'tag' this class="tag tag-label"}}
         {{this}}
       {{/link-to}}
     {{/each}}
   </div>
 </div>
 
-<div class="main container">
-  {{outlet}}
+<div class="container nav-container">
+  {{yield}}
 </div>
-

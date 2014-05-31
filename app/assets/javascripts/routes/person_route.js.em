@@ -6,3 +6,7 @@ class JpgRanger.PersonRoute extends Ember.Route
   setupController: (controller, model) ->
     @_super controller, model
     controller.person_name = @last_person_name
+
+class JpgRanger.PersonPreviewRoute extends JpgRanger*.BasePhotoRoute
+
+class JpgRanger.PersonFullRoute extends JpgRanger*.BasePhotoRoute

@@ -1,16 +1,16 @@
 <div class="tag-holder" style="text-align: center">
   {{#each people}}
-    {{#link-to 'person' this class="person label label-primary"}}
+    {{#link-to 'person' this class="person tag-label"}}
       {{this}}
     {{/link-to}}
   {{/each}}
   {{#each places}}
-    {{#link-to 'place' this class="place label label-primary"}}
+    {{#link-to 'place' this class="place tag-label"}}
       {{this}}
     {{/link-to}}
   {{/each}}
   {{#each tags}}
-    {{#link-to 'tag' this class="tag label label-primary"}}
+    {{#link-to 'tag' this class="tag tag-label"}}
       {{this}}
     {{/link-to}}
   {{/each}}

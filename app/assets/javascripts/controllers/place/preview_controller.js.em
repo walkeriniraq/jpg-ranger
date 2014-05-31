@@ -1,1 +1,0 @@
-class JpgRanger.PlacePreviewController extends JpgRanger*.BasePreviewController

@@ -1,1 +1,0 @@
-class JpgRanger.PersonPreviewController extends JpgRanger*.BasePreviewController
