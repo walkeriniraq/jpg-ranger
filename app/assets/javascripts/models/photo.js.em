@@ -14,6 +14,8 @@ class JpgRanger.Photo extends DS.Model
 
   medium_photo_path: ~> "/photos/#{@id}/medium_thumb"
 
+  medium_photo_background_url: ~> "background: url('#{@medium_photo_path}')"
+
   moment_photo_time: ~> moment @photo_time
 
   pretty_photo_time: ~> return @moment_photo_time.fromNow() if @moment_photo_time.isValid()

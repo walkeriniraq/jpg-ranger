@@ -1,37 +1,39 @@
 <div class="row">
-  <div class="col-md-9">
-    <div class="pull-right">
-      <button class="btn btn-success">Full Size</button>
-      <button class="btn btn-warning">Delete</button>
+  <div class="col-sm-8" style="text-align: right;">
+    <div class="photo-holder">
+      <div >
+        {{#each person in people}}
+          <span class="person label" {{action 'remove_person' this person }}>
+            {{person}}
+          </span>
+        {{/each}}
+        {{#each place in places}}
+          <span class="place label" {{action 'remove_place' this place }}>
+            {{place}}
+          </span>
+        {{/each}}
+        {{#each tag in tags}}
+          <span class="tag label" {{action 'remove_tag' this tag }}>
+            {{tag}}
+          </span>
+        {{/each}}
+      </div>
+      <div class="photo-thumbnail">
+        <img {{bind-attr src=medium_photo_path}} />
+        <button class="btn btn-success" style="top: 1em;">Full Size</button>
+        <button class="btn btn-warning" style="bottom: 1em;">Delete</button>
+      </div>
+      <div class="photo-info" style="max-width: 1000px;">
+        <div class="pull-right">{{uploader}}</div>
+        <div>{{original_filename}}</div>
+        <div>{{formatted_photo_time}}</div>
+        <div class="pull-right">{{file_hash}}</div>
+        <div title="extra exif data goes here">{{resolution}}</div>
+      </div>
     </div>
-    <div >
-      {{#each person in people}}
-        <span class="person label" {{action 'remove_person' this person }}>
-          {{person}}
-        </span>
-      {{/each}}
-      {{#each place in places}}
-        <span class="place label" {{action 'remove_place' this place }}>
-          {{place}}
-        </span>
-      {{/each}}
-      {{#each tag in tags}}
-        <span class="tag label" {{action 'remove_tag' this tag }}>
-          {{tag}}
-        </span>
-      {{/each}}
-    </div>
-    <img class="photo-thumbnail" {{bind-attr src=medium_photo_path}}>
-    <div class="photo-info" style="max-width: 1000px;">
-      <div class="pull-right">{{uploader}}</div>
-      <div>{{original_filename}}</div>
-      <div>{{formatted_photo_time}}</div>
-      <div class="pull-right">{{file_hash}}</div>
-      <div title="extra exif data goes here">{{resolution}}</div>
-    </div>
-
   </div>
-  <div class="col-md-3">
+
+  <div class="col-sm-4">
     <h4>Click to add</h4>
     <h5>People</h5>
     {{#each person in master_people_list}}
@@ -51,7 +53,7 @@
         {{tag}}
       </span>
     {{/each}}
-    <div style="padding-top: 20px;">
+    <div class="add-tags-buttons">
       <button class="btn person" {{action 'add_person' this}}>Add person</button>
       <button class="btn place" {{action 'add_place' this}}>Add place</button>
       <button class="btn tag" {{action 'add_tag' this}}>Add tag</button>

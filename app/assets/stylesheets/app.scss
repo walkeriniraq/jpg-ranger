@@ -1,6 +1,30 @@
+.photo-holder {
+  display: inline-block;
+  text-align: left;
+  max-width: 100%;
+}
+
 .photo-thumbnail {
   max-width: 100%;
   max-height: 100%;
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    button {
+      display: block;
+    }
+  }
+
+  button {
+    display: none;
+    position: absolute;
+    left: 1em;
+  }
+  
+  img {
+    max-width: 100%;
+  }
 }
 
 .tag-holder {
@@ -51,6 +75,17 @@
 @media (min-width: 991px) {
   .main {
     padding-left: 18em;
+  }
+
+  .container {
+    margin-left: 20px;
+  }
+}
+
+.add-tags-buttons {
+  margin-top: 1em;
+  button {
+    margin-top: 0.5em;
   }
 }
 
