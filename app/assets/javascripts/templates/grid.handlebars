@@ -16,10 +16,10 @@
 {{/each}}
 <div class="paging_bar">
   {{#if has_previous_page}}
-    <span class="pull-left">Previous</span>
+    <span class="pull-left" {{action 'change_page' previous_page}}>Previous</span>
   {{/if}}
   Page {{current_page}} of {{total_pages}}
   {{#if has_next_page}}
-    <span class="pull-right" {{action 'next_page'}}>Next</span>
+    <span class="pull-right" {{action 'change_page' next_page}}>Next</span>
   {{/if}}
 </div>

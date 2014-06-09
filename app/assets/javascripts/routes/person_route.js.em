@@ -14,6 +14,10 @@ class JpgRanger.PersonPageRoute extends JpgRanger*.BasePhotoPagingRoute
     controller.preview_route = 'person.preview'
     controller.photo_upload_data = { person: person }
 
+  actions:
+    change_page: (page) ->
+      @transitionTo 'person.page', @parent_model().person, page
+
 class JpgRanger.PersonPreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
   actions:
     open_full: (photo) ->

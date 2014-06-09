@@ -22,8 +22,7 @@ class JpgRanger.PhotoPagingController extends JpgRanger*.BaseArrayController
   current_page: ~> @meta.page
   has_next_page: ~> @current_page < @total_pages
   has_previous_page: ~> @current_page > 1
-#  actions:
-#    next_page: ->
-#      @target.page @current_page + 1, @
+  next_page: ~> @current_page + 1
+  previous_page: ~> @current_page - 1
 
 class JpgRanger.PhotoFullController extends JpgRanger*.BaseObjectController

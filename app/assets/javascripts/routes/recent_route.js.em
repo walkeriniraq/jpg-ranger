@@ -13,6 +13,10 @@ class JpgRanger.RecentPageRoute extends JpgRanger*.BasePhotoPagingRoute
     controller.preview_route = 'recent.preview'
     controller.photo_upload_data = {}
 
+  actions:
+    change_page: (page) ->
+      @transitionTo 'recent.page', page
+
 class JpgRanger.RecentPreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
   actions:
     open_full: (photo) ->
