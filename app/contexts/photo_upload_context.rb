@@ -30,7 +30,7 @@ class PhotoUploadContext
         img = orientation.transform_rmagick(img)
       end
       attr = { resolution: "#{exif.width} x #{exif.height}" }
-      photo_time = exif.andand.date_time || exif.andand.exif.andand.andand.date_time_original
+      photo_time = exif.andand.date_time || exif.andand.exif.andand.date_time_original
       attr[:photo_time] = photo_time unless photo_time.nil?
       photo.update_attributes(attr)
     end

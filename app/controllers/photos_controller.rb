@@ -3,7 +3,8 @@ class PhotosController < ApplicationController
   respond_to :json
 
   def index # find all
-    query = Photo.order_by(:upload_time.desc).limit(100)
+    page = (params[:page] || 1).to_i
+    query = Photo.order_by(:upload_time.desc)
     tag = params[:tag].andand.downcase.andand.strip
     unless tag.blank?
       query = query.where(:tags.in => [tag])
@@ -16,7 +17,8 @@ class PhotosController < ApplicationController
     unless person.blank?
       query = query.where(:people.in => [person])
     end
-    respond_with query
+    query = query.paginate(page: page)
+    respond_with query, meta: {total_pages: query.total_pages, page: page}
   end
 
   def show # find

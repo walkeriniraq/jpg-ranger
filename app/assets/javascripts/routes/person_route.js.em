@@ -1,12 +1,22 @@
 class JpgRanger.PersonRoute extends Ember.Route
   model: (params) ->
-    @last_person_name = params.person_name
-    @store.find 'photo', { person: params.person_name }
+    { person: params.person_name }
 
+class JpgRanger.PersonIndexRoute extends Ember.Route
+  redirect: (params) ->
+    @transitionTo 'person.page', params.person, 1
+
+class JpgRanger.PersonPageRoute extends JpgRanger*.BasePhotoPagingRoute
   setupController: (controller, model) ->
-    @_super controller, model
-    controller.person_name = @last_person_name
+    super(controller, model)
+    person = @parent_model().person
+    controller.title = person
+    controller.preview_route = 'person.preview'
+    controller.photo_upload_data = { person: person }
 
-class JpgRanger.PersonPreviewRoute extends JpgRanger*.BasePhotoRoute
+class JpgRanger.PersonPreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
+  actions:
+    open_full: (photo) ->
+      @transitionTo('person.full', @parent_model().person, photo.id)
 
-class JpgRanger.PersonFullRoute extends JpgRanger*.BasePhotoRoute
+class JpgRanger.PersonFullRoute extends JpgRanger*.BasePhotoFullRoute

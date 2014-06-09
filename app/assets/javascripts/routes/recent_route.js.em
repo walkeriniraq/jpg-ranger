@@ -1,7 +1,21 @@
 class JpgRanger.RecentRoute extends Ember.Route
   model: ->
-    @store.find 'photo', { order: 'recent' }
+    { }
 
-class JpgRanger.RecentPreviewRoute extends JpgRanger*.BasePhotoRoute
+class JpgRanger.RecentIndexRoute extends Ember.Route
+  redirect: ->
+    @transitionTo 'recent.page', 1
 
-class JpgRanger.RecentFullRoute extends JpgRanger*.BasePhotoRoute
+class JpgRanger.RecentPageRoute extends JpgRanger*.BasePhotoPagingRoute
+  setupController: (controller, model) ->
+    super(controller, model)
+    controller.title = 'Recent'
+    controller.preview_route = 'recent.preview'
+    controller.photo_upload_data = {}
+
+class JpgRanger.RecentPreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
+  actions:
+    open_full: (photo) ->
+      @transitionTo('recent.full', photo)
+
+class JpgRanger.RecentFullRoute extends JpgRanger*.BasePhotoFullRoute

@@ -38,6 +38,8 @@ gem 'browser'
 # use puma instead of f#@&ing WEBrick
 gem 'puma'
 
+gem 'will_paginate_mongoid'
+
 gem 'bcrypt-ruby'
 gem 'rmagick4j'
 gem 'exifr'

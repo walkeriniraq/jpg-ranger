@@ -1,3 +1,7 @@
+class JpgRanger.IndexRoute extends Ember.Route
+  redirect: ->
+    @transitionTo 'recent.page', 1
+
 class JpgRanger.ApplicationRoute extends Ember.Route
 
   create_person: ->
