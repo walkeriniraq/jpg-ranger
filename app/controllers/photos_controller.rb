@@ -4,7 +4,11 @@ class PhotosController < ApplicationController
 
   def index # find all
     page = (params[:page] || 1).to_i
-    query = Photo.order_by(:upload_time.desc)
+    query = if params[:sans_tags]
+              Photo.order_by(:tags_count.asc)
+            else
+              Photo.order_by(:upload_time.desc)
+            end
     tag = params[:tag].andand.downcase.andand.strip
     unless tag.blank?
       query = query.where(:tags.in => [tag])
@@ -18,7 +22,7 @@ class PhotosController < ApplicationController
       query = query.where(:people.in => [person])
     end
     query = query.paginate(page: page)
-    respond_with query, meta: {total_pages: query.total_pages, page: page}
+    respond_with query, meta: { total_pages: query.total_pages, page: page }
   end
 
   def show # find

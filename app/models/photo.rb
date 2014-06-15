@@ -7,17 +7,41 @@ class Photo
   field :ut, as: :upload_time, type: Time
   field :pt, as: :photo_time, type: Time
   field :r, as: :resolution, type: String
-  field :tags, type: Array
+  field :fh, as: :file_hash, type: String
+
   field :p, as: :people, type: Array
   field :pl, as: :places, type: Array
-  field :fh, as: :file_hash, type: String
+  field :tags, type: Array
+  field :t_c, as: :tags_count, type: Integer
+
+  def tags=(tags)
+    super(tags)
+    update_tags_count
+  end
+
+  def people=(people)
+    super(people)
+    update_tags_count
+  end
+
+  def places=(places)
+    super(places)
+    update_tags_count
+  end
 
   def add_tag(tag)
     tag = tag.downcase.strip
     unless tags.include? tag
       tags << tag
+      update_tags_count
       save
     end
+  end
+
+  def update_tags_count
+    self.tags_count = (people.andand.size || 0) +
+        (places.andand.size || 0) +
+        (tags.andand.size || 0)
   end
 
   def add_person(name)
@@ -25,6 +49,7 @@ class Photo
     name = name.downcase.strip
     unless people.include? name
       people << name
+      update_tags_count
       save
     end
   end
@@ -34,6 +59,7 @@ class Photo
     name = name.downcase.strip
     unless places.include? name
       places << name
+      update_tags_count
       save
     end
   end

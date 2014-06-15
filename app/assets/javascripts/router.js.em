@@ -4,6 +4,11 @@ JpgRanger.Router.map ->
     @route 'preview', { path: 'preview/:id' }
   @route 'recent.full', { path: 'recent/full/:id' }
 
+  @resource 'tagless', { path: 'tagless' }, ->
+    @route 'page', { path: ':page'}
+    @route 'preview', { path: 'preview/:id' }
+  @route 'tagless.full', { path: 'tagless/full/:id' }
+
   @resource 'person', { path: 'person/:person_name' }, ->
     @route 'page', { path: ':page'}
     @route 'preview', { path: 'preview/:id' }

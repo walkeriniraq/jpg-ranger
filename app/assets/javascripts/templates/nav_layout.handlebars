@@ -14,6 +14,9 @@
         {{#link-to 'recent' tagName="li"}}
           {{#link-to 'recent'}}Recent Photos{{/link-to}}
         {{/link-to}}
+        {{#link-to 'tagless' tagName="li"}}
+          {{#link-to 'tagless'}}Tagless{{/link-to}}
+        {{/link-to}}
       </ul>
     </div>
   </div>
@@ -22,6 +25,7 @@
 <div class="navbar-spacer" style="height: 50px;"></div>
 
 <div id="tag-bar" class="hidden-sm hidden-xs">
+  <h3 style="color: #e6e57d; font-size: 150%">Click to view</h3>
   <div>
     {{#each controllers.application.master_people_list}}
       {{#link-to 'person' this class="person tag-label"}}
