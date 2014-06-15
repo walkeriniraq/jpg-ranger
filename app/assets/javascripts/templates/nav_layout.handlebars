@@ -1,0 +1,54 @@
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-id">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Jpg Ranger</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse-id">
+      <ul class="nav navbar-nav">
+        {{#link-to 'recent' tagName="li"}}
+          {{#link-to 'recent'}}Recent Photos{{/link-to}}
+        {{/link-to}}
+        {{#link-to 'tagless' tagName="li"}}
+          {{#link-to 'tagless'}}Tagless{{/link-to}}
+        {{/link-to}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="navbar-spacer" style="height: 50px;"></div>
+
+<div id="tag-bar" class="hidden-sm hidden-xs">
+  <h3 style="color: #e6e57d; font-size: 150%">Click to view</h3>
+  <div>
+    {{#each controllers.application.master_people_list}}
+      {{#link-to 'person' this class="person tag-label"}}
+        {{this}}
+      {{/link-to}}
+    {{/each}}
+  </div>
+  <div>
+    {{#each controllers.application.master_places_list}}
+      {{#link-to 'place' this class="place tag-label"}}
+        {{this}}
+      {{/link-to}}
+    {{/each}}
+  </div>
+  <div>
+    {{#each controllers.application.master_tags_list}}
+      {{#link-to 'tag' this class="tag tag-label"}}
+        {{this}}
+      {{/link-to}}
+    {{/each}}
+  </div>
+</div>
+
+<div class="container nav-container">
+  {{yield}}
+</div>

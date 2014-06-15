@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-sm-8" style="text-align: right;">
+    <div class="photo-holder">
+      <div class="photo-thumbnail">
+        <div style="position: absolute; left: 1em; top: 1em;">
+          {{#each person in people}}
+            <span class="person tag-label delete-tag" {{action 'remove_person' this person }}>
+              <span class="glyphicon glyphicon-trash"></span>
+              {{person}}
+            </span>
+          {{/each}}
+          {{#each place in places}}
+            <span class="place tag-label delete-tag" {{action 'remove_place' this place }}>
+              <span class="glyphicon glyphicon-trash"></span>
+              {{place}}
+            </span>
+          {{/each}}
+          {{#each tag in tags}}
+            <span class="tag tag-label delete-tag" {{action 'remove_tag' this tag }}>
+              <span class="glyphicon glyphicon-trash"></span>
+              {{tag}}
+            </span>
+          {{/each}}
+        </div>
+        <img {{bind-attr src=medium_photo_path}} />
+        <button class="btn btn-success" style="right: 1em;" {{action 'open_full' this }}>Full Size</button>
+        <button class="btn btn-warning" style="left: 1em;">Delete</button>
+      </div>
+      <div class="photo-info" style="max-width: 1000px;">
+        <div class="pull-right">{{uploader}}</div>
+        <div>{{original_filename}}</div>
+        <div>{{formatted_photo_time}}</div>
+        <div class="pull-right">{{file_hash}}</div>
+        <div title="extra exif data goes here">{{resolution}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <h4>Click to add</h4>
+    <h5>People</h5>
+    {{#each person in computed_people_list}}
+      <span class="person tag-label add-tag" {{action 'add_person' this person }}>
+        <span class="glyphicon glyphicon-plus"></span>
+        {{person}}
+      </span>
+    {{/each}}
+    <h5 style="margin-top: 2em;">Places</h5>
+    {{#each place in computed_places_list}}
+      <span class="place tag-label add-tag" {{action 'add_place' this place }}>
+        <span class="glyphicon glyphicon-plus"></span>
+        {{place}}
+      </span>
+    {{/each}}
+    <h5 style="margin-top: 2em;">Tags</h5>
+    {{#each tag in computed_tags_list}}
+      <span class="tag tag-label add-tag" {{action 'add_tag' this tag }}>
+        <span class="glyphicon glyphicon-plus"></span>
+        {{tag}}
+      </span>
+    {{/each}}
+    <div class="add-tags-buttons">
+      <button class="btn person" {{action 'add_person' this}}>Add person</button>
+      <button class="btn place" {{action 'add_place' this}}>Add place</button>
+      <button class="btn tag" {{action 'add_tag' this}}>Add tag</button>
+    </div>
+  </div>
+</div>

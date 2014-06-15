@@ -1,6 +1,51 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: #222222;
+  color: #ffffff;
+}
+
+button {
+  color: #535353;
+}
+
+.ember-view {
+  height: 100%;
+}
+
+.photo-holder {
+  display: inline-block;
+  text-align: left;
+  max-width: 100%;
+}
+
+.full-photo {
+  max-width: 100%;
+  max-height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  left: 0;
+  right: 0;
+  position: fixed;
+}
+
 .photo-thumbnail {
   max-width: 100%;
   max-height: 100%;
+  position: relative;
+  display: inline-block;
+
+  button {
+    position: absolute;
+    bottom: 1em;
+  }
+
+  img {
+    max-width: 100%;
+  }
 }
 
 .tag-holder {
@@ -9,35 +54,133 @@
 }
 
 .photo {
-
+  min-width: 10em;
 }
 
 .tag {
-  cursor: pointer;
-  z-index: 100;
+  background-color: #ffeabb;
 }
 
 .place {
-  background-color: #4ea67b;
-  cursor: pointer;
-  z-index: 100;
+  background-color: #b6f1be;
 }
 
 .person {
-  background-color: #6e5cca;
-  cursor: pointer;
+  background-color: #ffd3ec;
+}
+
+.tag-label {
+  padding: 0.25em 0.5em;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 100;
+  margin-bottom: 0.2em;
+  border-radius: 0.4em;
+  line-height: 1;
+  color: #535353;
   z-index: 100;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.delete-tag {
+  border: 0.5px solid #535353;
+  position: relative;
+
+  span {
+    display: none;
+    color: #e80000;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    top: 2px;
+  }
+
+  &:hover {
+    margin-top: 0;
+    border-color: #e80000;
+    span {
+      display: inline;
+    }
+  }
+}
+
+.add-tag {
+  position: relative;
+  border: 0.5px solid transparent;
+
+  span {
+    display: none;
+    color: #008a13;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    top: 2px;
+  }
+
+  &:hover {
+    margin-top: 0;
+    border: 0.5px solid #008a13;
+    span {
+      display: inline;
+    }
+  }
 }
 
 .drop-highlight {
   border: 2px solid greenyellow;
 }
 
-.label {
-  padding: 0.3em 0.6em;
-  display: inline-block;
+.add-tags-buttons {
+  margin-top: 1em;
+  button {
+    margin-top: 0.5em;
+  }
 }
 
 .add-tag {
   cursor: pointer;
+}
+
+.mini-upload {
+  border: 1px solid #008B00;
+  padding: 8px 40px;
+  text-align: center;
+  background-color: #005d08;
+  border-radius: 2px;
+}
+
+.nav-container {
+  padding-top: 1em;
+
+  h1 {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 991px) {
+  .nav-container {
+    padding-left: 18em;
+    margin-left: 1em;
+  }
+}
+
+#tag-bar {
+  position: fixed;
+  left: 0;
+  height: 100%;
+  background-color: #747474;
+  width: 18em;
+  text-align: center;
+  padding: 0.5em;
+  div {
+    padding: 0.5em 1em;
+  }
+}
+
+.paging_bar {
+  text-align: center;
+  margin: 0.4em 0;
 }

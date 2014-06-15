@@ -1,0 +1,12 @@
+/ - ? main menu / stuff
+/recent
+/recent/preview/:id
+/person/:name
+/person/:name/preview/:id
+/person/:name/show/:id
+/tag/:name
+/tag/:name/preview/:id
+/tag/:name/show/:id
+/place/:name
+/place/:name/preview/:id
+/place/:name/show/:id
