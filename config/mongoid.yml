@@ -73,7 +73,7 @@ special:
       database: jpg_ranger_special
       hosts:
         - 127.0.0.1:27017
-special:
+production:
   sessions:
     default:
       database: jpg_ranger
