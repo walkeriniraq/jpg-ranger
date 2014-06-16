@@ -16,6 +16,9 @@ class JpgRanger.TaglessPageRoute extends JpgRanger*.BasePhotoPagingRoute
   actions:
     change_page: (page) ->
       @transitionTo 'tagless.page', page
+    file_uploaded: ->
+      @transitionTo 'tagless.page', 1
+      @refresh()
 
 class JpgRanger.TaglessPreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
   actions:

@@ -17,6 +17,9 @@ class JpgRanger.TagPageRoute extends JpgRanger*.BasePhotoPagingRoute
   actions:
     change_page: (page) ->
       @transitionTo 'tag.page', @parent_model().tag, page
+    file_uploaded: ->
+      @transitionTo 'tag.page', 1
+      @refresh()
 
 class JpgRanger.TagPreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
   actions:

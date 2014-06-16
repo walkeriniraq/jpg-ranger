@@ -3,7 +3,6 @@ class JpgRanger.IndexRoute extends Ember.Route
     @transitionTo 'recent.page', 1
 
 class JpgRanger.ApplicationRoute extends Ember.Route
-
   create_person: ->
     ret = prompt('Who do you want to add?')
     return unless ret?
@@ -33,6 +32,11 @@ class JpgRanger.ApplicationRoute extends Ember.Route
     @controller.master_tags_list.pushObject ret
 
   actions:
+    start_upload: ->
+      @controller.incrementProperty 'uploads_pending'
+    end_upload: ->
+      @controller.decrementProperty 'uploads_pending'
+
     create_person: ->
       @create_person()
     create_place: ->

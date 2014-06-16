@@ -21,6 +21,13 @@
     </div>
   </div>
 </div>
+{{#if controllers.application.has_uploads_pending}}
+  <div id="uploading_overlay">
+    <span id="text">
+      Uploading...
+    </span>
+  </div>
+{{/if}}
 
 <div class="navbar-spacer" style="height: 50px;"></div>
 

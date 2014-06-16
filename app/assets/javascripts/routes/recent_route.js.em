@@ -16,6 +16,9 @@ class JpgRanger.RecentPageRoute extends JpgRanger*.BasePhotoPagingRoute
   actions:
     change_page: (page) ->
       @transitionTo 'recent.page', page
+    file_uploaded: ->
+      @transitionTo 'recent.page', 1
+      @refresh()
 
 class JpgRanger.RecentPreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
   actions:

@@ -17,6 +17,9 @@ class JpgRanger.PlacePageRoute extends JpgRanger*.BasePhotoPagingRoute
   actions:
     change_page: (page) ->
       @transitionTo 'place.page', @parent_model().place, page
+    file_uploaded: ->
+      @transitionTo 'place.page', 1
+      @refresh()
 
 class JpgRanger.PlacePreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
   actions:

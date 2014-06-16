@@ -17,6 +17,9 @@ class JpgRanger.PersonPageRoute extends JpgRanger*.BasePhotoPagingRoute
   actions:
     change_page: (page) ->
       @transitionTo 'person.page', @parent_model().person, page
+    file_uploaded: ->
+      @transitionTo 'person.page', 1
+      @refresh()
 
 class JpgRanger.PersonPreviewRoute extends JpgRanger*.BasePhotoPreviewRoute
   actions:

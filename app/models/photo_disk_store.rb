@@ -1,6 +1,9 @@
 require 'pathname'
 
 class PhotoDiskStore
+
+  @@mutex = Mutex.new
+
   def initialize
     # @root = Pathname.new('photo_storage')
     @root = Pathname.new(Rails.configuration.photo_store)
@@ -23,11 +26,13 @@ class PhotoDiskStore
   end
 
   def build_directory(root_path, filename)
-    first = root_path + filename[0]
-    first.mkdir unless first.exist?
-    second = first + filename[1]
-    second.mkdir unless second.exist?
-    second
+    @@mutex.synchronize do
+      first = root_path + filename[0]
+      first.mkdir unless first.exist?
+      second = first + filename[1]
+      second.mkdir unless second.exist?
+      second
+    end
   end
 
 end

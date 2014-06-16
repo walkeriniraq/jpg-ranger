@@ -184,3 +184,25 @@ button {
   text-align: center;
   margin: 0.4em 0;
 }
+
+#uploading_overlay {
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5000;
+  bottom: 0;
+  text-align: center;
+
+  #text {
+    background-color: #333333;
+    border: 1px solid #aaaaaa;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1em 3em;
+    top: 40%;
+    position: absolute;
+    border-radius: 5px;
+  }
+}
