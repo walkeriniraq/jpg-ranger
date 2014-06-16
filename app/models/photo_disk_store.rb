@@ -5,7 +5,6 @@ class PhotoDiskStore
   @@mutex = Mutex.new
 
   def initialize
-    # @root = Pathname.new('photo_storage')
     @root = Pathname.new(Rails.configuration.photo_store)
     @full = @root + 'full'
     @thumb = @root + 'thumb'
