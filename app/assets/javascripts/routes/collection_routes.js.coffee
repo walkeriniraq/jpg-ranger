@@ -22,5 +22,27 @@ JpgRanger.CollectionPreviewRoute = JpgRanger.BasePhotoRoute.extend
   actions:
     open_full: (photo) ->
       @transitionTo('collection.full', @modelFor('collection').collection, photo.id)
+    previous: (photo) ->
+      photo.previous_photo({collection: @modelFor('collection').collection}).done (previous_photo) =>
+        if previous_photo?
+          @transitionTo('collection.preview', @modelFor('collection').collection, previous_photo)
+    next: (photo) ->
+      photo.next_photo({collection: @modelFor('collection').collection}).done (next_photo) =>
+        if next_photo?
+          @transitionTo('collection.preview', @modelFor('collection').collection, next_photo)
+    delete: (photo) ->
+      if (window.confirm("Are you sure?"))
+        photo.delete().then =>
+          @transitionTo('collection.page', @modelFor('collection').collection, 1)
 
-JpgRanger.CollectionFullRoute = JpgRanger.BasePhotoRoute.extend()
+JpgRanger.CollectionFullRoute = JpgRanger.BasePhotoRoute.extend
+  actions:
+    previous: (photo) ->
+      photo.previous_photo({collection: @modelFor('collection').collection}).done (previous_photo) =>
+        if previous_photo?
+          @transitionTo('collection.full', @modelFor('collection').collection, previous_photo)
+    next: (photo) ->
+      photo.next_photo({collection: @modelFor('collection').collection}).done (next_photo) =>
+        if next_photo?
+          @transitionTo('collection.full', @modelFor('collection').collection, next_photo)
+

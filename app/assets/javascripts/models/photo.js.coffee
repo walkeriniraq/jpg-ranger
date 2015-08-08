@@ -48,3 +48,6 @@ JpgRanger.Photo = DS.Model.extend
         @store.push('photo', @store.normalize('photo', data.photo))
       else
         null
+
+  delete: ->
+    $.ajax(url: "/photos/#{@get('id')}", type: 'DELETE')

@@ -30,6 +30,10 @@ JpgRanger.PersonPreviewRoute = JpgRanger.BasePhotoRoute.extend
       photo.next_photo({person: @modelFor('person').person}).done (next_photo) =>
         if next_photo?
           @transitionTo('person.preview', @modelFor('person').person, next_photo)
+    delete: (photo) ->
+      if (window.confirm("Are you sure?"))
+        photo.delete().then =>
+          @transitionTo('person.page', @modelFor('person').person, 1)
 
 JpgRanger.PersonFullRoute = JpgRanger.BasePhotoRoute.extend
   actions:

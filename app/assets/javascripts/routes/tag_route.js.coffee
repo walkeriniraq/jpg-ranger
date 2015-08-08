@@ -30,6 +30,10 @@ JpgRanger.TagPreviewRoute = JpgRanger.BasePhotoRoute.extend
       photo.next_photo({tag: @modelFor('tag').tag}).done (next_photo) =>
         if next_photo?
           @transitionTo('tag.preview', @modelFor('tag').tag, next_photo)
+    delete: (photo) ->
+      if (window.confirm("Are you sure?"))
+        photo.delete().then =>
+          @transitionTo('tag.page', @modelFor('tag').tag, 1)
 
 JpgRanger.TagFullRoute = JpgRanger.BasePhotoRoute.extend
   actions:
@@ -41,4 +45,6 @@ JpgRanger.TagFullRoute = JpgRanger.BasePhotoRoute.extend
       photo.next_photo({tag: @modelFor('tag').tag}).done (next_photo) =>
         if next_photo?
           @transitionTo('tag.full', @modelFor('tag').tag, next_photo)
+    back: (photo) ->
+      @transitionTo('tag.preview', @modelFor('tag').tag, photo)
 

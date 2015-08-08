@@ -27,6 +27,10 @@ JpgRanger.RecentPreviewRoute = JpgRanger.BasePhotoRoute.extend
       photo.next_photo().done (next_photo) =>
         if next_photo?
           @transitionTo('recent.preview', next_photo)
+    delete: (photo) ->
+      if (window.confirm("Are you sure?"))
+        photo.delete().then =>
+          @transitionTo('recent.page', 1)
 
 JpgRanger.RecentFullRoute = JpgRanger.BasePhotoRoute.extend
   actions:

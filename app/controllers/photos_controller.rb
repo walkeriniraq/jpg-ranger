@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
 
   def query_from_params
     query = if params[:sans_tags]
-              Photo.asc(:tags_count)
+              Photo.where(:tags_count.lt => 4).asc(:tags_count)
             elsif params[:by_size]
               Photo.asc(:pixels)
             else

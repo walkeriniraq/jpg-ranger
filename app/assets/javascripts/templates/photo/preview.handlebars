@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-8" style="text-align: center;">
       <div class="photo-preview">
-        <div class="paging_bar">
+        <div class="photo_paging_bar">
           <button class="pull-left btn-link prev-photo" {{action 'previous' model}}>Previous</button>
           <button class="pull-right btn-link next-photo" {{action 'next' model}}>Next</button>
         </div>
@@ -36,7 +36,7 @@
         </div>
         <img {{bind-attr src=model.medium_photo_path}} />
         <button class="btn btn-success" style="right: 1em;" {{action 'open_full' model }}>Full Size</button>
-        <button class="btn btn-warning" style="left: 1em;">Delete</button>
+        <button class="btn btn-warning" style="left: 1em;" {{action 'delete' model }}>Delete</button>
       </div>
       <div class="photo-info" style="text-align: left;">
         <div class="pull-right">{{model.uploader}}</div>

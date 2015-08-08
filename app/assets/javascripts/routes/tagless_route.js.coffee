@@ -27,6 +27,10 @@ JpgRanger.TaglessPreviewRoute = JpgRanger.BasePhotoRoute.extend
       photo.next_photo({ sans_tags: true }).done (next_photo) =>
         if next_photo?
           @transitionTo('tagless.preview', next_photo)
+    delete: (photo) ->
+      if (window.confirm("Are you sure?"))
+        photo.delete().then =>
+          @transitionTo('tagless.page', 1)
 
 JpgRanger.TaglessFullRoute = JpgRanger.BasePhotoRoute.extend
   actions:
@@ -38,4 +42,5 @@ JpgRanger.TaglessFullRoute = JpgRanger.BasePhotoRoute.extend
       photo.next_photo({ sans_tags: true }).done (next_photo) =>
         if next_photo?
           @transitionTo('tagless.full', next_photo)
-
+    back: (photo) ->
+      @transitionTo('tagless.preview', photo)
