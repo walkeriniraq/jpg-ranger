@@ -17,6 +17,9 @@
         {{#link-to 'tagless' tagName="li"}}
           {{#link-to 'tagless'}}Tagless{{/link-to}}
         {{/link-to}}
+        {{#link-to 'smallest' tagName="li"}}
+          {{#link-to 'smallest'}}Smallest{{/link-to}}
+        {{/link-to}}
       </ul>
     </div>
   </div>
@@ -34,28 +37,31 @@
 <div id="tag-bar" class="hidden-sm hidden-xs">
   <h3 style="color: #e6e57d; font-size: 150%">Click to view</h3>
   <div>
-    {{#each controllers.application.master_people_list}}
-      {{#link-to 'person' this class="person tag-label"}}
-        {{this}}
+    {{#each person in controllers.application.master_people_list}}
+      {{#link-to 'person' person class="person tag-label link-tag"}}
+        {{person}}
       {{/link-to}}
     {{/each}}
   </div>
   <div>
-    {{#each controllers.application.master_places_list}}
-      {{#link-to 'place' this class="place tag-label"}}
-        {{this}}
+    {{#each place in controllers.application.master_places_list}}
+      {{#link-to 'place' place class="place tag-label link-tag"}}
+        {{place}}
       {{/link-to}}
     {{/each}}
   </div>
   <div>
-    {{#each controllers.application.master_tags_list}}
-      {{#link-to 'tag' this class="tag tag-label"}}
-        {{this}}
+    {{#each tag in controllers.application.master_tags_list}}
+      {{#link-to 'tag' tag class="tag tag-label link-tag"}}
+        {{tag}}
       {{/link-to}}
     {{/each}}
   </div>
-</div>
-
-<div class="container nav-container">
-  {{yield}}
+  <div>
+    {{#each group in controllers.application.master_collection_list}}
+      {{#link-to 'collection' group class="collection tag-label link-tag"}}
+        {{group}}
+      {{/link-to}}
+    {{/each}}
+  </div>
 </div>

@@ -1,5 +1,5 @@
-class JpgRanger.Store extends DS.Store
+JpgRanger.ApplicationStore = DS.Store.extend()
 
 # Override the default adapter with the `DS.ActiveModelAdapter` which
 # is built to work nicely with the ActiveModel::Serializers gem.
-class JpgRanger.ApplicationAdapter extends DS.ActiveModelAdapter
+JpgRanger.ApplicationAdapter = DS.ActiveModelAdapter.extend()

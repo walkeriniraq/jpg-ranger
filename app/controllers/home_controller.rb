@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
 
   def globals
-    render_json tags: Photo.distinct(:tags), people: Photo.distinct(:people), places: Photo.distinct(:places)
+    render_json tags: Photo.distinct(:tags), people: Photo.distinct(:people), places: Photo.distinct(:places), collections: Photo.distinct(:collections)
   end
 
   def tag
@@ -25,6 +25,12 @@ class HomeController < ApplicationController
   def tag_place
     photo = Photo.find params[:id]
     photo.add_place params[:tag]
+    render_json status: 'ok'
+  end
+
+  def tag_collection
+    photo = Photo.find params[:id]
+    photo.add_collection params[:tag]
     render_json status: 'ok'
   end
 

@@ -27,10 +27,10 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'mongoid', github: 'walkeriniraq/mongoid'
+gem 'mongoid'
 gem 'kaminari'
 
-gem 'draper', '~> 1.3.0'
+gem 'draper', '~> 2.1.0'
 gem 'andand'
 
 gem 'browser'
@@ -45,11 +45,13 @@ gem 'rmagick4j'
 gem 'exifr'
 
 gem 'ember-rails'
-gem 'ember-source', '~> 1.5.0'
-
-gem 'ember_script-rails', github: 'ghempton/ember-script-rails'
+gem 'ember-source'
+gem 'handlebars-source'
 
 gem 'tzinfo-data'
+
+# TODO: figure out why this was removed
+gem 'responders'
 
 group :test do
   gem 'rspec'

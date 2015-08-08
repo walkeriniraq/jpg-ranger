@@ -1,8 +1,8 @@
-class JpgRanger.IndexRoute extends Ember.Route
+JpgRanger.IndexRoute = Ember.Route.extend
   redirect: ->
     @transitionTo 'recent.page', 1
 
-class JpgRanger.ApplicationRoute extends Ember.Route
+JpgRanger.ApplicationRoute = Ember.Route.extend
   create_person: ->
     ret = prompt('Who do you want to add?')
     return unless ret?
@@ -31,6 +31,15 @@ class JpgRanger.ApplicationRoute extends Ember.Route
       return
     @controller.master_tags_list.pushObject ret
 
+  create_collection: ->
+    ret = prompt('What is the name of the new collection?')
+    return unless ret?
+    ret = ret.trim().toLowerCase()
+    if(ret.length < 1)
+      alert 'Please enter a value for the new collection'
+      return
+    @controller.master_collection_list.pushObject ret
+
   actions:
     start_upload: ->
       @controller.incrementProperty 'uploads_pending'
@@ -43,12 +52,13 @@ class JpgRanger.ApplicationRoute extends Ember.Route
       @create_place()
     create_tag: ->
       @create_tag()
+    create_collection: ->
+      @create_collection()
 
     add_person: (photo, person) ->
       person = @create_person() unless person?
       return unless person?
-      photo.people = [] unless photo.people?
-      photo.people.pushObject person
+      photo.get('people').pushObject person
       photo.save().catch (err) ->
         console.log err
         alert 'There was a problem saving to the database.'
@@ -57,8 +67,7 @@ class JpgRanger.ApplicationRoute extends Ember.Route
     add_place: (photo, place) ->
       place = @create_place() unless place?
       return unless place?
-      photo.places = [] unless photo.places?
-      photo.places.pushObject place
+      photo.get('places').pushObject place
       photo.save().catch (err) ->
         console.log err
         alert 'There was a problem saving to the database.'
@@ -67,30 +76,46 @@ class JpgRanger.ApplicationRoute extends Ember.Route
     add_tag: (photo, tag) ->
       tag = @create_tag() unless tag?
       return unless tag?
-      photo.tags = [] unless photo.tags?
-      photo.tags.pushObject tag
+      photo.get('tags').pushObject tag
       photo.save().catch (err) ->
         console.log err
         alert 'There was a problem saving to the database.'
         photo.tags.removeObject tag
 
+    add_collection: (photo, collection) ->
+      collection = @create_collection() unless collection?
+      return unless collection?
+      photo.get('collections').pushObject collection
+      photo.save().catch (err) ->
+        console.log err
+        alert 'There was a problem saving to the database.'
+        photo.collections.removeObject collection
+
     remove_person: (photo, person) ->
-      photo.people.removeObject person
+      photo.get('people').removeObject person
       photo.save().catch (err) ->
         console.log err
         alert 'There was a problem saving to the database.'
         photo.people.pushObject person
 
     remove_place: (photo, place) ->
-      photo.places.removeObject place
+      photo.get('places').removeObject place
       photo.save().catch (err) ->
         console.log err
         alert 'There was a problem saving to the database.'
         photo.places.pushObject place
 
     remove_tag: (photo, tag) ->
-      photo.tags.removeObject tag
+      photo.get('tags').removeObject tag
       photo.save().catch (err) ->
         console.log err
         alert 'There was a problem saving to the database.'
         photo.tags.pushObject tag
+
+    remove_collection: (photo, collection) ->
+      photo.get('collections').removeObject collection
+      photo.save().catch (err) ->
+        console.log err
+        alert 'There was a problem saving to the database.'
+        photo.collections.pushObject collection
+     

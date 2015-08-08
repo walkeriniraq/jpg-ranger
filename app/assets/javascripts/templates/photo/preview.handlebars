@@ -1,68 +1,88 @@
-<div class="row">
-  <div class="col-sm-8" style="text-align: right;">
-    <div class="photo-holder">
-      <div class="photo-thumbnail">
+{{partial 'nav_layout'}}
+
+<div class="container nav-container" style="width: auto;">
+  <div class="row">
+    <div class="col-sm-8" style="text-align: center;">
+      <div class="photo-preview">
+        <div class="paging_bar">
+          <button class="pull-left btn-link prev-photo" {{action 'previous' model}}>Previous</button>
+          <button class="pull-right btn-link next-photo" {{action 'next' model}}>Next</button>
+        </div>
         <div style="position: absolute; left: 1em; top: 1em;">
-          {{#each person in people}}
-            <span class="person tag-label delete-tag" {{action 'remove_person' this person }}>
+          {{#each person in model.people}}
+            <span class="person tag-label delete-tag" {{action 'remove_person' model person }}>
               <span class="glyphicon glyphicon-trash"></span>
               {{person}}
             </span>
           {{/each}}
-          {{#each place in places}}
-            <span class="place tag-label delete-tag" {{action 'remove_place' this place }}>
+          {{#each place in model.places}}
+            <span class="place tag-label delete-tag" {{action 'remove_place' model place }}>
               <span class="glyphicon glyphicon-trash"></span>
               {{place}}
             </span>
           {{/each}}
-          {{#each tag in tags}}
-            <span class="tag tag-label delete-tag" {{action 'remove_tag' this tag }}>
+          {{#each tag in model.tags}}
+            <span class="tag tag-label delete-tag" {{action 'remove_tag' model tag }}>
               <span class="glyphicon glyphicon-trash"></span>
               {{tag}}
             </span>
           {{/each}}
+          {{#each group in model.collections}}
+            <span class="collection tag-label delete-tag" {{action 'remove_collection' model group }}>
+              <span class="glyphicon glyphicon-trash"></span>
+              {{group}}
+            </span>
+          {{/each}}
         </div>
-        <img {{bind-attr src=medium_photo_path}} />
-        <button class="btn btn-success" style="right: 1em;" {{action 'open_full' this }}>Full Size</button>
+        <img {{bind-attr src=model.medium_photo_path}} />
+        <button class="btn btn-success" style="right: 1em;" {{action 'open_full' model }}>Full Size</button>
         <button class="btn btn-warning" style="left: 1em;">Delete</button>
       </div>
-      <div class="photo-info" style="max-width: 1000px;">
-        <div class="pull-right">{{uploader}}</div>
-        <div>{{original_filename}}</div>
-        <div>{{formatted_photo_time}}</div>
-        <div class="pull-right">{{file_hash}}</div>
-        <div title="extra exif data goes here">{{resolution}}</div>
+      <div class="photo-info" style="text-align: left;">
+        <div class="pull-right">{{model.uploader}}</div>
+        <div>{{model.original_filename}}</div>
+        <div>{{model.formatted_photo_time}}</div>
+        <div class="pull-right">{{model.file_hash}}</div>
+        <div title="extra exif data goes here">{{model.resolution}}</div>
       </div>
     </div>
-  </div>
 
-  <div class="col-sm-4">
-    <h4>Click to add</h4>
-    <h5>People</h5>
-    {{#each person in computed_people_list}}
-      <span class="person tag-label add-tag" {{action 'add_person' this person }}>
+    <div class="col-sm-4">
+      <h4>Click to add</h4>
+      <h5>People</h5>
+      {{#each person in computed_people_list}}
+        <span class="person tag-label add-tag" {{action 'add_person' model person }}>
         <span class="glyphicon glyphicon-plus"></span>
-        {{person}}
+          {{person}}
       </span>
-    {{/each}}
-    <h5 style="margin-top: 2em;">Places</h5>
-    {{#each place in computed_places_list}}
-      <span class="place tag-label add-tag" {{action 'add_place' this place }}>
+      {{/each}}
+      <h5 style="margin-top: 2em;">Places</h5>
+      {{#each place in computed_places_list}}
+        <span class="place tag-label add-tag" {{action 'add_place' model place }}>
         <span class="glyphicon glyphicon-plus"></span>
-        {{place}}
+          {{place}}
       </span>
-    {{/each}}
-    <h5 style="margin-top: 2em;">Tags</h5>
-    {{#each tag in computed_tags_list}}
-      <span class="tag tag-label add-tag" {{action 'add_tag' this tag }}>
+      {{/each}}
+      <h5 style="margin-top: 2em;">Tags</h5>
+      {{#each tag in computed_tags_list}}
+        <span class="tag tag-label add-tag" {{action 'add_tag' model tag }}>
         <span class="glyphicon glyphicon-plus"></span>
-        {{tag}}
+          {{tag}}
       </span>
-    {{/each}}
-    <div class="add-tags-buttons">
-      <button class="btn person" {{action 'add_person' this}}>Add person</button>
-      <button class="btn place" {{action 'add_place' this}}>Add place</button>
-      <button class="btn tag" {{action 'add_tag' this}}>Add tag</button>
+      {{/each}}
+      <h5 style="margin-top: 2em;">Collections</h5>
+      {{#each group in computed_collections_list}}
+        <span class="collection tag-label add-tag" {{action 'add_collection' model group }}>
+        <span class="glyphicon glyphicon-plus"></span>
+          {{group}}
+      </span>
+      {{/each}}
+      <div class="add-tags-buttons">
+        <button class="btn person" {{action 'add_person' model}}>Add person</button>
+        <button class="btn place" {{action 'add_place' model}}>Add place</button>
+        <button class="btn tag" {{action 'add_tag' model}}>Add tag</button>
+        <button class="btn collection" {{action 'add_collection' model}}>Add collection</button>
+      </div>
     </div>
   </div>
 </div>

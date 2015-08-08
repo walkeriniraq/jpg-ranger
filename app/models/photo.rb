@@ -7,16 +7,28 @@ class Photo
   field :ut, as: :upload_time, type: Time
   field :pt, as: :photo_time, type: Time
   field :r, as: :resolution, type: String
+  field :px, as: :pixels, type: Integer
   field :fh, as: :file_hash, type: String
 
   field :p, as: :people, type: Array
   field :pl, as: :places, type: Array
   field :tags, type: Array
+  field :col, as: :collections, type: Array
   field :t_c, as: :tags_count, type: Integer
+
+  def tags
+    self.tags = [] if super.nil?
+    super
+  end
 
   def tags=(tags)
     super(tags)
     update_tags_count
+  end
+
+  def people
+    self.people = [] if super.nil?
+    super
   end
 
   def people=(people)
@@ -24,9 +36,28 @@ class Photo
     update_tags_count
   end
 
+  def places
+    self.places = [] if super.nil?
+    super
+  end
+
   def places=(places)
     super(places)
     update_tags_count
+  end
+
+  def collections
+    self.collections = [] if super.nil?
+    super
+  end
+
+  def collections=(collections)
+    super(collections)
+    update_tags_count
+  end
+
+  def update_tags_count
+    self.tags_count = people.size + places.size + tags.size + collections.size
   end
 
   def add_tag(tag)
@@ -36,12 +67,6 @@ class Photo
       update_tags_count
       save
     end
-  end
-
-  def update_tags_count
-    self.tags_count = (people.andand.size || 0) +
-        (places.andand.size || 0) +
-        (tags.andand.size || 0)
   end
 
   def add_person(name)
@@ -58,7 +83,20 @@ class Photo
     self.places ||= []
     name = name.downcase.strip
     unless places.include? name
-      places << name
+      puts 'TESTING'
+      self.places << name
+      update_tags_count
+      val = save
+      puts val
+      val
+    end
+  end
+
+  def add_collection(name)
+    self.collections ||= []
+    name = name.downcase.strip
+    unless collections.include? name
+      collections << name
       update_tags_count
       save
     end

@@ -8,6 +8,8 @@ JpgRanger::Application.routes.draw do
       get 'small_thumb'
       get 'medium_thumb'
       get 'full'
+      get 'next'
+      get 'previous'
     end
   end
 

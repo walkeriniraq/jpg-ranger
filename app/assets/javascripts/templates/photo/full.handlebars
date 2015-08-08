@@ -1,1 +1,5 @@
-<img {{bind-attr src=full_photo_path}} class="full-photo" />
+<img {{bind-attr src=model.full_photo_path}} class="full-photo" />
+<div class="paging_bar">
+  <button class="pull-left btn-link prev-photo" {{action 'previous' model}}>Previous</button>
+  <button class="pull-right btn-link next-photo" {{action 'next' model}}>Next</button>
+</div>

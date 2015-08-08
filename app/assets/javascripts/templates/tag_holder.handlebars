@@ -1,17 +1,22 @@
 <div class="tag-holder" style="text-align: center">
-  {{#each people}}
-    {{#link-to 'person' this class="person tag-label"}}
-      {{this}}
+  {{#each person in model.people}}
+    {{#link-to 'person' person class="person tag-label link-tag"}}
+      {{person}}
     {{/link-to}}
   {{/each}}
-  {{#each places}}
-    {{#link-to 'place' this class="place tag-label"}}
-      {{this}}
+  {{#each place in model.places}}
+    {{#link-to 'place' place class="place tag-label link-tag"}}
+      {{place}}
     {{/link-to}}
   {{/each}}
-  {{#each tags}}
-    {{#link-to 'tag' this class="tag tag-label"}}
-      {{this}}
+  {{#each tag in model.tags}}
+    {{#link-to 'tag' tag class="tag tag-label link-tag"}}
+      {{tag}}
+    {{/link-to}}
+  {{/each}}
+  {{#each group in model.collections}}
+    {{#link-to 'collection' group class="collection tag-label link-tag"}}
+      {{group}}
     {{/link-to}}
   {{/each}}
 </div>
