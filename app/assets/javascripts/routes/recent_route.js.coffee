@@ -4,7 +4,7 @@ JpgRanger.RecentIndexRoute = Ember.Route.extend
 
 JpgRanger.RecentPageRoute = Ember.Route.extend
   model: (params) ->
-    @store.find 'photo', { page: params.page }
+    @store.query 'photo', { page: params.page }
 
   actions:
     change_page: (page) ->

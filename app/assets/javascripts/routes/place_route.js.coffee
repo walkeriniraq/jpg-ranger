@@ -8,7 +8,7 @@ JpgRanger.PlaceIndexRoute = Ember.Route.extend
 
 JpgRanger.PlacePageRoute = Ember.Route.extend
   model: (params) ->
-    @store.find 'photo', { page: params.page, place: @modelFor('place').place }
+    @store.query 'photo', { page: params.page, place: @modelFor('place').place }
   actions:
     change_page: (page) ->
       @transitionTo 'place.page', @modelFor('place').place, page

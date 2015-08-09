@@ -93,6 +93,10 @@ button {
   background-color: #e8e8e8;
 }
 
+.img-thumbnail {
+  width: 100%;
+}
+
 .tag-label {
   padding: 0.25em 0.5em;
   display: inline-block;
@@ -175,6 +179,8 @@ button {
   text-align: center;
   background-color: #005d08;
   border-radius: 2px;
+  position: absolute;
+  right: 0;
 }
 
 .nav-container {
@@ -207,7 +213,7 @@ button {
 
 .paging_bar {
   text-align: center;
-  margin: 0.4em 0;
+  margin: 1em 0 0;
 }
 
 .photo-selected {

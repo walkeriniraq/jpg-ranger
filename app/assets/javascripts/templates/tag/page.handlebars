@@ -1,10 +1,23 @@
 {{partial 'nav_layout'}}
 
 <div class="container nav-container" style="width: auto;">
-  {{view 'upload'}}
+  <div class="row">
+    <div class="col-sm-9">
+      {{view 'upload'}}
+      <h1 style="text-align: center;">{{title}}</h1>
 
-  <h1>{{title}}</h1>
+      {{partial 'photo/paging_bar'}}
 
-  {{partial 'photo/grid'}}
+      {{#each photo in model}}
+        {{selectable-photo photo=photo action='open_preview'}}
+      {{/each}}
+
+      {{partial 'photo/paging_bar'}}
+    </div>
+
+    <div class="col-sm-3">
+      {{partial 'photo/tagging'}}
+    </div>
+  </div>
 
 </div>

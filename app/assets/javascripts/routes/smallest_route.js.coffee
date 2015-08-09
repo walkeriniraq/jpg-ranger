@@ -4,7 +4,7 @@ JpgRanger.SmallestIndexRoute = Ember.Route.extend
 
 JpgRanger.SmallestPageRoute = Ember.Route.extend
   model: (params) ->
-    @store.find 'photo', { page: params.page, by_size: true }
+    @store.query 'photo', { page: params.page, by_size: true }
 
   actions:
     change_page: (page) ->

@@ -8,7 +8,7 @@ JpgRanger.TagIndexRoute = Ember.Route.extend
 
 JpgRanger.TagPageRoute = Ember.Route.extend
   model: (params) ->
-    @store.find 'photo', { page: params.page, tag: @modelFor('tag').tag }
+    @store.query 'photo', { page: params.page, tag: @modelFor('tag').tag }
   actions:
     change_page: (page) ->
       @transitionTo 'tag.page', @modelFor('tag').tag, page

@@ -8,7 +8,7 @@ JpgRanger.CollectionIndexRoute = Ember.Route.extend
 
 JpgRanger.CollectionPageRoute = Ember.Route.extend
   model: (params) ->
-    @store.find 'photo', { page: params.page, collection: @modelFor('collection').collection }
+    @store.query 'photo', { page: params.page, collection: @modelFor('collection').collection }
   actions:
     change_page: (page) ->
       @transitionTo 'collection.page', @modelFor('collection').collection, page
