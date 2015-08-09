@@ -27,4 +27,4 @@
 
 JpgRanger.BasePhotoRoute = Ember.Route.extend
   model: (params) ->
-    @get('store').find 'photo', params.id
+    @get('store').findRecord 'photo', params.id

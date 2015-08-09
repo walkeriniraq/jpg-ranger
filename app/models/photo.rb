@@ -83,12 +83,9 @@ class Photo
     self.places ||= []
     name = name.downcase.strip
     unless places.include? name
-      puts 'TESTING'
       self.places << name
       update_tags_count
-      val = save
-      puts val
-      val
+      save
     end
   end
 

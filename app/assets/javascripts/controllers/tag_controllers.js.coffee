@@ -1,10 +1,12 @@
 JpgRanger.TagPageController = JpgRanger.PhotoPagingController.extend
-  needs: 'tag'
+
+  tag: Ember.inject.controller()
+
   title: (->
-    @get('controllers.tag.model.tag')
-  ).property('controllers.tag.model.tag')
+    @get('tag.model.tag')
+  ).property('tag.model.tag')
   photo_upload_data: (->
-    { tag: @get('controllers.tag.model.tag') }
-  ).property('controllers.tag.model.tag')
+    { tag: @get('tag.model.tag') }
+  ).property('tag.model.tag')
 
 JpgRanger.TagPreviewController = JpgRanger.PhotoPreviewController.extend()

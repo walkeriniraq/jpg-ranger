@@ -1,10 +1,11 @@
 JpgRanger.CollectionPageController = JpgRanger.PhotoPagingController.extend
-  needs: 'collection'
+  collection: Ember.inject.controller()
+
   title: (->
-    @get('controllers.collection.model.collection')
-  ).property('controllers.collection.model.collection')
+    @get('collection.model.collection')
+  ).property('collection.model.collection')
   photo_upload_data: (->
-    { collection: @get('controllers.collection.model.collection') }
-  ).property('controllers.collection.model.collection')
+    { collection: @get('collection.model.collection') }
+  ).property('collection.model.collection')
 
 JpgRanger.CollectionPreviewController = JpgRanger.PhotoPreviewController.extend

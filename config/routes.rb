@@ -11,6 +11,12 @@ JpgRanger::Application.routes.draw do
       get 'next'
       get 'previous'
     end
+    collection do
+      get 'multi_person_add'
+      get 'multi_place_add'
+      get 'multi_tag_add'
+      get 'multi_collection_add'
+    end
   end
 
 end

@@ -1,10 +1,11 @@
 JpgRanger.PersonPageController = JpgRanger.PhotoPagingController.extend
-  needs: 'person'
+  person: Ember.inject.controller()
+
   title: (->
-    @get('controllers.person.model.person')
-  ).property('controllers.person.model.person')
+    @get('person.model.person')
+  ).property('person.model.person')
   photo_upload_data: (->
-    { person: @get('controllers.person.model.person') }
-  ).property('controllers.person.model.person')
+    { person: @get('person.model.person') }
+  ).property('person.model.person')
 
 JpgRanger.PersonPreviewController = JpgRanger.PhotoPreviewController.extend()

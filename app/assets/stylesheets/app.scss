@@ -210,6 +210,11 @@ button {
   margin: 0.4em 0;
 }
 
+.photo-selected {
+  border: 2px solid red;
+  margin: -2px;
+}
+
 .photo_paging_bar {
   height: 100%;
   left: 0;

@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
 
   def index # find all
     page = (params[:page] || 1).to_i
-    query = query_from_params.paginate(page: page, per_page: 80)
+    query = query_from_params.paginate(page: page, per_page: 54)
     respond_with query, meta: { total_pages: query.total_pages, page: page }
   end
 
@@ -108,6 +108,34 @@ class PhotosController < ApplicationController
   def full
     photo = Photo.find params[:id]
     send_file PhotoDiskStore.new.photo_path photo.filename
+  end
+
+  def multi_person_add
+    Photo.find(params[:photos]).each do |photo|
+      photo.add_person params[:person]
+    end
+    render_json status: 'ok'
+  end
+
+  def multi_place_add
+    Photo.find(params[:photos]).each do |photo|
+      photo.add_place params[:place]
+    end
+    render_json status: 'ok'
+  end
+
+  def multi_tag_add
+    Photo.find(params[:photos]).each do |photo|
+      photo.add_tag params[:tag]
+    end
+    render_json status: 'ok'
+  end
+
+  def multi_collection_add
+    Photo.find(params[:photos]).each do |photo|
+      photo.add_collection params[:collection]
+    end
+    render_json status: 'ok'
   end
 
 end

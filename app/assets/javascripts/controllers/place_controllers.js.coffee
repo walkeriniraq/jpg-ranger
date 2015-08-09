@@ -1,10 +1,11 @@
 JpgRanger.PlacePageController = JpgRanger.PhotoPagingController.extend
-  needs: 'place'
+  place: Ember.inject.controller()
+
   title: (->
-    @get('controllers.place.model.place')
-  ).property('controllers.place.model.place')
+    @get('place.model.place')
+  ).property('place.model.place')
   photo_upload_data: (->
-    { place: @get('controllers.place.model.place') }
-  ).property('controllers.place.model.place')
+    { place: @get('place.model.place') }
+  ).property('place.model.place')
 
 JpgRanger.PlacePreviewController = JpgRanger.PhotoPreviewController.extend()

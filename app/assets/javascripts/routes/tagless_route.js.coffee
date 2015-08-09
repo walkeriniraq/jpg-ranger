@@ -4,15 +4,14 @@ JpgRanger.TaglessIndexRoute = Ember.Route.extend
 
 JpgRanger.TaglessPageRoute = Ember.Route.extend
   model: (params) ->
-    @store.find 'photo', { page: params.page, sans_tags: true }
+    @store.query('photo', { page: params.page, sans_tags: true })
 
   actions:
     change_page: (page) ->
       @transitionTo 'tagless.page', page
     open_preview: (photo) ->
       @transitionTo 'tagless.preview', photo
-    file_uploaded: ->
-      @transitionTo 'tagless.page', 1
+    reload: ->
       @refresh()
 
 JpgRanger.TaglessPreviewRoute = JpgRanger.BasePhotoRoute.extend

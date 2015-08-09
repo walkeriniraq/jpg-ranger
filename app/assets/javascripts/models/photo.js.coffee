@@ -38,16 +38,38 @@ JpgRanger.Photo = DS.Model.extend
   next_photo: (params) ->
     $.getJSON("/photos/#{@get('id')}/next", params).then (data) =>
       if data.photo?
-        @store.push('photo', @store.normalize('photo', data.photo))
+        @store.push(@store.normalize('photo', data.photo))
       else
         null
 
   previous_photo: (params) ->
     $.getJSON("/photos/#{@get('id')}/previous", params).then (data) =>
       if data.photo?
-        @store.push('photo', @store.normalize('photo', data.photo))
+        @store.push(@store.normalize('photo', data.photo))
       else
         null
 
   delete: ->
     $.ajax(url: "/photos/#{@get('id')}", type: 'DELETE')
+
+JpgRanger.Photo.reopenClass
+  add_person_multiple: (person, photos) ->
+    ids = []
+    photos.forEach((photo) -> ids.push(photo.id))
+    $.getJSON('/photos/multi_person_add', {person: person, photos: ids})
+
+  add_place_multiple: (place, photos) ->
+    ids = []
+    photos.forEach((photo) -> ids.push(photo.id))
+    $.getJSON('/photos/multi_place_add', {place: place, photos: ids})
+
+  add_tag_multiple: (tag, photos) ->
+    ids = []
+    photos.forEach((photo) -> ids.push(photo.id))
+    $.getJSON('/photos/multi_tag_add', {tag: tag, photos: ids})
+
+  add_collection_multiple: (collection, photos) ->
+    ids = []
+    photos.forEach((photo) -> ids.push(photo.id))
+    $.getJSON('/photos/multi_collection_add', {collection: collection, photos: ids})
+    

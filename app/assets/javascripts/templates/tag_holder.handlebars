@@ -15,8 +15,8 @@
     {{/link-to}}
   {{/each}}
   {{#each group in model.collections}}
-    {{#link-to 'collection' group class="collection tag-label link-tag"}}
+    <span class="collection tag-label link-tag">
       {{group}}
-    {{/link-to}}
+    </span>
   {{/each}}
 </div>
