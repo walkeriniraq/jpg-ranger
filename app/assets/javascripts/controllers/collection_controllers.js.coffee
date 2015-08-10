@@ -8,4 +8,4 @@ JpgRanger.CollectionPageController = JpgRanger.PhotoPagingController.extend
     { collection: @get('collection.model.collection') }
   ).property('collection.model.collection')
 
-JpgRanger.CollectionPreviewController = JpgRanger.PhotoPreviewController.extend
+JpgRanger.CollectionPreviewController = JpgRanger.PhotoPreviewController.extend()

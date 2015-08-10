@@ -1,0 +1,27 @@
+{{yield}}
+<div class="paging_bar">
+  {{#if has_previous_page}}
+    <button class="pull-left btn-link" {{action 'change_page' previous_page}}>Previous</button>
+  {{/if}}
+  Page {{current_page}} of {{total_pages}}
+  {{#if has_next_page}}
+    <button class="pull-right btn-link" {{action 'change_page' next_page}}>Next</button>
+  {{/if}}
+</div>
+
+{{#each photo in photos}}
+  {{selectable-photo
+    photo=photo selected_photos=selected_photos
+    single_select='select_photo' photo_clicked='open_preview' multi_select='toggle_selection' range_select='range_select'
+  }}
+{{/each}}
+
+<div class="paging_bar">
+  {{#if has_previous_page}}
+    <button class="pull-left btn-link" {{action 'change_page' previous_page}}>Previous</button>
+  {{/if}}
+  Page {{current_page}} of {{total_pages}}
+  {{#if has_next_page}}
+    <button class="pull-right btn-link" {{action 'change_page' next_page}}>Next</button>
+  {{/if}}
+</div>

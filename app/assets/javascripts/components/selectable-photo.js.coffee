@@ -1,11 +1,22 @@
 JpgRanger.SelectablePhotoComponent = Ember.Component.extend
   classNames: ['mini-photo-holder']
-  selected: (->
-    @get('photo.selected')
-  ).property('photo.selected')
 
-  actions:
-    toggle_selection: ->
-      @set 'photo.selected', !@get('photo.selected')
-    open_preview: ->
-      @sendAction('action', @get('photo'))
+  selected: (->
+    @get('selected_photos').contains(@get('photo'))
+  ).property('selected_photos.[]')
+
+  onClick: ((event)->
+    if event.ctrlKey
+      @sendAction 'multi_select', @get('photo')
+    else if event.shiftKey
+      # this clears out the browser selection
+      if (document.body.createTextRange)
+        document.body.createTextRange().select()
+      else if (window.getSelection)
+        window.getSelection().removeAllRanges()
+      @sendAction 'range_select', @get('photo')
+    else if $(event.target).hasClass('photo-thumbnail')
+      @sendAction 'photo_clicked', @get('photo')
+    else
+      @sendAction 'single_select', @get('photo')
+  ).on('click')

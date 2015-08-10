@@ -34,3 +34,4 @@ JpgRanger.Router.map ()->
     @route 'preview', { path: 'preview/:id' }
     @route 'full', { path: 'full/:id' }
 
+  @route 'stats'

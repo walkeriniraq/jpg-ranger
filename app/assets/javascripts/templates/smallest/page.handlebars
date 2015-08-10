@@ -3,15 +3,9 @@
 <div class="container nav-container" style="width: auto;">
   <div class="row">
     <div class="col-sm-9">
-
-      <h1 style="text-align: center;">Smallest Photos</h1>
-      {{partial 'photo/paging_bar'}}
-
-      {{#each photo in model}}
-        {{selectable-photo photo=photo action='open_preview'}}
-      {{/each}}
-
-      {{partial 'photo/paging_bar'}}
+      {{#photo-grid photos=model selected_photos=selected_photos open_preview='open_preview' change_page='change_page'}}
+        <h1 style="text-align: center;">Smallest Photos</h1>
+      {{/photo-grid}}
     </div>
 
     <div class="col-sm-3">

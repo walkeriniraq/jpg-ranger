@@ -55,41 +55,62 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
     create_collection: ->
       @create_collection()
 
+    # TODO: move this into the tagging component
     add_person: (photo, person) ->
       person = @create_person() unless person?
       return unless person?
-      photo.get('people').pushObject person
-      photo.save().catch (err) ->
-        console.log err
-        alert 'There was a problem saving to the database.'
-        photo.people.removeObject person
+      if photo.constructor == JpgRanger.Photo
+        photo.get('people').pushObject person
+        photo.save().catch (err) ->
+          console.log err
+          alert 'There was a problem saving to the database.'
+          photo.people.removeObject person
+      else
+        JpgRanger.Photo.add_person_multiple(person, photo).then =>
+          photo.forEach (photo) ->
+            photo.get('people').addObject(person)
 
     add_place: (photo, place) ->
       place = @create_place() unless place?
       return unless place?
-      photo.get('places').pushObject place
-      photo.save().catch (err) ->
-        console.log err
-        alert 'There was a problem saving to the database.'
-        photo.places.removeObject place
+      if photo.constructor == JpgRanger.Photo
+        photo.get('places').pushObject place
+        photo.save().catch (err) ->
+          console.log err
+          alert 'There was a problem saving to the database.'
+          photo.places.removeObject place
+      else
+        JpgRanger.Photo.add_place_multiple(place, photo).then =>
+          photo.forEach (photo) ->
+            photo.get('places').addObject(place)
       
     add_tag: (photo, tag) ->
       tag = @create_tag() unless tag?
       return unless tag?
-      photo.get('tags').pushObject tag
-      photo.save().catch (err) ->
-        console.log err
-        alert 'There was a problem saving to the database.'
-        photo.tags.removeObject tag
+      if photo.constructor == JpgRanger.Photo
+        photo.get('tags').pushObject tag
+        photo.save().catch (err) ->
+          console.log err
+          alert 'There was a problem saving to the database.'
+          photo.tags.removeObject tag
+      else
+        JpgRanger.Photo.add_tag_multiple(tag, photo).then =>
+          photo.forEach (photo) ->
+            photo.get('tags').addObject(tag)
 
     add_collection: (photo, collection) ->
       collection = @create_collection() unless collection?
       return unless collection?
-      photo.get('collections').pushObject collection
-      photo.save().catch (err) ->
-        console.log err
-        alert 'There was a problem saving to the database.'
-        photo.collections.removeObject collection
+      if photo.constructor == JpgRanger.Photo
+        photo.get('collections').pushObject collection
+        photo.save().catch (err) ->
+          console.log err
+          alert 'There was a problem saving to the database.'
+          photo.collections.removeObject collection
+      else
+        JpgRanger.Photo.add_collection_multiple(collection, photo).then =>
+          photo.forEach (photo) ->
+            photo.get('collections').addObject(collection)
 
     remove_person: (photo, person) ->
       photo.get('people').removeObject person

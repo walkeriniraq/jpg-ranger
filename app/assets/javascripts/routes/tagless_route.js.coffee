@@ -11,8 +11,6 @@ JpgRanger.TaglessPageRoute = Ember.Route.extend
       @transitionTo 'tagless.page', page
     open_preview: (photo) ->
       @transitionTo 'tagless.preview', photo
-    reload: ->
-      @refresh()
 
 JpgRanger.TaglessPreviewRoute = JpgRanger.BasePhotoRoute.extend
   actions:

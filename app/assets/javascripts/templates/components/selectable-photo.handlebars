@@ -1,6 +1,6 @@
-<div {{bind-attr class="selected:photo-selected :photo :img-thumbnail"}} {{action 'toggle_selection' photo}}>
+<div {{bind-attr class="selected:photo-selected :photo :img-thumbnail"}}>
   <div style="text-align: center;" {{bind-attr title=photo.original_filename}}>
-    <img class="photo-thumbnail" {{bind-attr src=photo.small_photo_path}} {{action 'open_preview' }}>
+    <img class="photo-thumbnail" {{bind-attr src=photo.small_photo_path}}>
   </div>
   {{render 'tag_holder' photo}}
 </div>
