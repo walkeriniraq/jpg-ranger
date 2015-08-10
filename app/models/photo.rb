@@ -16,6 +16,12 @@ class Photo
   field :col, as: :collections, type: Array
   field :t_c, as: :tags_count, type: Integer
 
+  COUNT_REDUCE_FUNCTION = '
+        function(key, values) {
+          return Array.sum(values);
+        }
+      '
+
   def tags
     self.tags = [] if super.nil?
     super
@@ -24,6 +30,17 @@ class Photo
   def tags=(tags)
     super(tags)
     update_tags_count
+  end
+
+  def self.tag_counts
+    map = '
+      function() {
+        this.tags.forEach(function(tag) {
+          emit(tag, 1);
+        });
+      }
+    '
+    all.map_reduce(map, COUNT_REDUCE_FUNCTION).out(inline: true)
   end
 
   def people
@@ -36,6 +53,17 @@ class Photo
     update_tags_count
   end
 
+  def self.people_counts
+    map = '
+      function() {
+        this.p.forEach(function(person) {
+          emit(person, 1);
+        });
+      }
+    '
+    all.map_reduce(map, COUNT_REDUCE_FUNCTION).out(inline: true)
+  end
+
   def places
     self.places = [] if super.nil?
     super
@@ -46,6 +74,17 @@ class Photo
     update_tags_count
   end
 
+  def self.place_counts
+    map = '
+      function() {
+        this.pl.forEach(function(place) {
+          emit(place, 1);
+        });
+      }
+    '
+    all.map_reduce(map, COUNT_REDUCE_FUNCTION).out(inline: true)
+  end
+
   def collections
     self.collections = [] if super.nil?
     super
@@ -54,6 +93,17 @@ class Photo
   def collections=(collections)
     super(collections)
     update_tags_count
+  end
+
+  def self.collection_counts
+    map = '
+      function() {
+        this.col.forEach(function(collection) {
+          emit(collection, 1);
+        });
+      }
+    '
+    all.map_reduce(map, COUNT_REDUCE_FUNCTION).out(inline: true)
   end
 
   def update_tags_count

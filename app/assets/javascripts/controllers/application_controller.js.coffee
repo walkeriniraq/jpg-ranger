@@ -18,4 +18,29 @@ JpgRanger.ApplicationController = Ember.Controller.extend
 
   hide_nav: Ember.computed.match 'currentRouteName', /full/
 
-JpgRanger.StatsController = JpgRanger.BaseController.extend()
+JpgRanger.StatsController = JpgRanger.BaseController.extend
+  sorted_people: Ember.computed 'model.people.[]', ->
+    Ember.ArrayProxy.extend(Ember.SortableMixin).create
+      sortProperties: ['value']
+      sortAscending: false
+      content: this.get('model.people')
+      
+  sorted_places: Ember.computed 'model.places.[]', ->
+    Ember.ArrayProxy.extend(Ember.SortableMixin).create
+      sortProperties: ['value']
+      sortAscending: false
+      content: this.get('model.places')
+      
+  sorted_tags: Ember.computed 'model.tags.[]', ->
+    Ember.ArrayProxy.extend(Ember.SortableMixin).create
+      sortProperties: ['value']
+      sortAscending: false
+      content: this.get('model.tags')
+      
+  sorted_collections: Ember.computed 'model.collections.[]', ->
+    Ember.ArrayProxy.extend(Ember.SortableMixin).create
+      sortProperties: ['value']
+      sortAscending: false
+      content: this.get('model.collections')
+      
+      

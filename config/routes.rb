@@ -2,6 +2,7 @@ JpgRanger::Application.routes.draw do
   root 'home#index'
 
   get 'globals', to: 'home#globals'
+  get 'stats', to: 'home#stats'
 
   resources :photos, except: [:new, :edit] do
     member do

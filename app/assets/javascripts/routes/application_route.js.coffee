@@ -2,6 +2,15 @@ JpgRanger.IndexRoute = Ember.Route.extend
   redirect: ->
     @transitionTo 'recent.page', 1
 
+JpgRanger.StatsRoute = Ember.Route.extend
+  model: ->
+    $.getJSON('/stats')
+
+  actions:
+    reload: ->
+      @refresh()
+
+
 JpgRanger.ApplicationRoute = Ember.Route.extend
   create_person: ->
     ret = prompt('Who do you want to add?')
@@ -68,7 +77,7 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
       else
         JpgRanger.Photo.add_person_multiple(person, photo).then =>
           photo.forEach (photo) ->
-            photo.get('people').addObject(person)
+            photo.get('people').pushObject(person)
 
     add_place: (photo, place) ->
       place = @create_place() unless place?
@@ -82,7 +91,7 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
       else
         JpgRanger.Photo.add_place_multiple(place, photo).then =>
           photo.forEach (photo) ->
-            photo.get('places').addObject(place)
+            photo.get('places').pushObject(place)
       
     add_tag: (photo, tag) ->
       tag = @create_tag() unless tag?
@@ -96,7 +105,7 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
       else
         JpgRanger.Photo.add_tag_multiple(tag, photo).then =>
           photo.forEach (photo) ->
-            photo.get('tags').addObject(tag)
+            photo.get('tags').pushObject(tag)
 
     add_collection: (photo, collection) ->
       collection = @create_collection() unless collection?
@@ -139,4 +148,4 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
         console.log err
         alert 'There was a problem saving to the database.'
         photo.collections.pushObject collection
-     
+

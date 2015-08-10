@@ -10,6 +10,13 @@ class HomeController < ApplicationController
     render_json tags: Photo.distinct(:tags).sort, people: Photo.distinct(:people).sort, places: Photo.distinct(:places).sort, collections: Photo.distinct(:collections).sort
   end
 
+  def stats
+    render_json tags: Photo.tag_counts,
+                people: Photo.people_counts,
+                places: Photo.place_counts,
+                collections: Photo.collection_counts
+  end
+
   def tag
     photo = Photo.find params[:id]
     photo.add_tag params[:tag]

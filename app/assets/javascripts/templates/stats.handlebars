@@ -1,1 +1,36 @@
-stats
+  <div class="pull-left">
+    {{#each person in sorted_people}}
+      <div>
+        {{#link-to 'person' person class="person tag-label link-tag"}}
+          {{person._id}} - {{person.value}}
+        {{/link-to}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="pull-left">
+    {{#each place in sorted_places}}
+      <div>
+        {{#link-to 'place' place class="place tag-label link-tag"}}
+          {{place._id}} - {{place.value}}
+        {{/link-to}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="pull-left">
+    {{#each tag in sorted_tags}}
+      <div>
+        {{#link-to 'tag' tag class="tag tag-label link-tag"}}
+          {{tag._id}} - {{tag.value}}
+        {{/link-to}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="pull-left">
+    {{#each collection in sorted_collections}}
+      <div>
+        {{#link-to 'collection' collection class="collection tag-label link-tag"}}
+          {{collection._id}} - {{collection.value}}
+        {{/link-to}}
+      </div>
+    {{/each}}
+  </div>
