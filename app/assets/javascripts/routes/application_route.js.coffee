@@ -50,11 +50,6 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
     @controller.master_collection_list.pushObject ret
 
   actions:
-    start_upload: ->
-      @controller.incrementProperty 'uploads_pending'
-    end_upload: ->
-      @controller.decrementProperty 'uploads_pending'
-
     create_person: ->
       @create_person()
     create_place: ->

@@ -28,9 +28,9 @@ JpgRanger.PhotoPagingController = JpgRanger.BaseController.extend
       @send 'add_place', @get('selected_photos'), place
     tagging_add_tag: (tag) ->
       @send 'add_tag', @get('selected_photos'), tag
-#      JpgRanger.Photo.add_tag_multiple(tag, @get('selected_photos')).then =>
-#        @send('reload')
     tagging_add_collection: (collection) ->
       @send 'add_collection', @get('selected_photos'), collection
-#      JpgRanger.Photo.add_collection_multiple(collection, @get('selected_photos')).then =>
-#        @send('reload')
+    start_upload: ->
+      @get('application').incrementProperty 'uploads_pending'
+    end_upload: ->
+      @get('application').decrementProperty 'uploads_pending'
