@@ -1,16 +1,11 @@
-{{partial 'nav_layout'}}
-
-<div class="container nav-container" style="width: auto;">
-  <div class="row">
-    <div class="col-sm-9">
-      {{#photo-grid photos=model selected_photos=selected_photos open_preview='open_preview' change_page='change_page'}}
-        <h1 style="text-align: center;">Untagged</h1>
-      {{/photo-grid}}
-    </div>
-
-    <div class="col-sm-3">
-      {{partial 'photo/tagging'}}
-    </div>
+<div class="row">
+  <div class="col-sm-9">
+    {{#photo-grid photos=model selected_photos=selected_photos open_preview='open_preview' change_page='change_page'}}
+      <h1 style="text-align: center;">Untagged</h1>
+    {{/photo-grid}}
   </div>
 
+  <div class="col-sm-3">
+    {{partial 'photo/tagging'}}
+  </div>
 </div>

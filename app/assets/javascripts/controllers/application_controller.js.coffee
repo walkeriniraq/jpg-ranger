@@ -15,3 +15,7 @@ JpgRanger.ApplicationController = Ember.Controller.extend
   has_uploads_pending: (->
     @get('uploads_pending')
   ).property('uploads_pending')
+
+  hide_nav: Ember.computed.match 'currentRouteName', /full/
+
+JpgRanger.StatsController = JpgRanger.BaseController.extend()
