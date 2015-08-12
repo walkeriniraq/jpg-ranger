@@ -15,31 +15,6 @@ JpgRanger.RecentPageRoute = Ember.Route.extend
       @transitionTo 'recent.page', 1
       @refresh()
 
-JpgRanger.RecentPreviewRoute = JpgRanger.BasePhotoRoute.extend
-  actions:
-    open_full: (photo) ->
-      @transitionTo('recent.full', photo)
-    previous: (photo) ->
-      photo.previous_photo().done (previous_photo) =>
-        if previous_photo?
-          @transitionTo('recent.preview', previous_photo)
-    next: (photo) ->
-      photo.next_photo().done (next_photo) =>
-        if next_photo?
-          @transitionTo('recent.preview', next_photo)
-    delete: (photo) ->
-      if (window.confirm("Are you sure?"))
-        photo.delete().then =>
-          @transitionTo('recent.page', 1)
+JpgRanger.RecentPreviewRoute = JpgRanger.BasePhotoRoute.extend()
 
-JpgRanger.RecentFullRoute = JpgRanger.BasePhotoRoute.extend
-  actions:
-    previous: (photo) ->
-      photo.previous_photo().done (previous_photo) =>
-        if previous_photo?
-          @transitionTo('recent.full', previous_photo)
-    next: (photo) ->
-      photo.next_photo().done (next_photo) =>
-        if next_photo?
-          @transitionTo('recent.full', next_photo)
-
+JpgRanger.RecentFullRoute = JpgRanger.BasePhotoRoute.extend()

@@ -64,7 +64,7 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
       person = @create_person() unless person?
       return unless person?
       if photo.constructor == JpgRanger.Photo
-        photo.get('people').pushObject person
+        photo.get('people').addObject person
         photo.save().catch (err) ->
           console.log err
           alert 'There was a problem saving to the database.'
@@ -72,13 +72,13 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
       else
         JpgRanger.Photo.add_person_multiple(person, photo).then =>
           photo.forEach (photo) ->
-            photo.get('people').pushObject(person)
+            photo.get('people').addObject(person)
 
     add_place: (photo, place) ->
       place = @create_place() unless place?
       return unless place?
       if photo.constructor == JpgRanger.Photo
-        photo.get('places').pushObject place
+        photo.get('places').addObject place
         photo.save().catch (err) ->
           console.log err
           alert 'There was a problem saving to the database.'
@@ -86,13 +86,13 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
       else
         JpgRanger.Photo.add_place_multiple(place, photo).then =>
           photo.forEach (photo) ->
-            photo.get('places').pushObject(place)
+            photo.get('places').addObject(place)
       
     add_tag: (photo, tag) ->
       tag = @create_tag() unless tag?
       return unless tag?
       if photo.constructor == JpgRanger.Photo
-        photo.get('tags').pushObject tag
+        photo.get('tags').addObject tag
         photo.save().catch (err) ->
           console.log err
           alert 'There was a problem saving to the database.'
@@ -100,13 +100,13 @@ JpgRanger.ApplicationRoute = Ember.Route.extend
       else
         JpgRanger.Photo.add_tag_multiple(tag, photo).then =>
           photo.forEach (photo) ->
-            photo.get('tags').pushObject(tag)
+            photo.get('tags').addObject(tag)
 
     add_collection: (photo, collection) ->
       collection = @create_collection() unless collection?
       return unless collection?
       if photo.constructor == JpgRanger.Photo
-        photo.get('collections').pushObject collection
+        photo.get('collections').addObject collection
         photo.save().catch (err) ->
           console.log err
           alert 'There was a problem saving to the database.'

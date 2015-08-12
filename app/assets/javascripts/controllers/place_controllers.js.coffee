@@ -8,4 +8,15 @@ JpgRanger.PlacePageController = JpgRanger.PhotoPagingController.extend
     { place: @get('place.model.place') }
   ).property('place.model.place')
 
-JpgRanger.PlacePreviewController = JpgRanger.PhotoPreviewController.extend()
+JpgRanger.PlacePreviewController = JpgRanger.PhotoPreviewController.extend
+  place: Ember.inject.controller()
+
+  route_base_name: 'place'
+  query_params: Ember.computed('place.model.place', -> { place: @get('place.model.place') })
+
+JpgRanger.PlaceFullController = JpgRanger.PhotoFullController.extend
+  place: Ember.inject.controller()
+
+  route_base_name: 'place'
+  query_params: Ember.computed('place.model.place', -> { place: @get('place.model.place') })
+

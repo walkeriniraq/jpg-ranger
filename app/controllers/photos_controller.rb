@@ -90,7 +90,7 @@ class PhotosController < ApplicationController
   def destroy
     photo = Photo.find params[:id]
     store = PhotoDiskStore.new
-    FileUtils.rm [store.photo_path(photo.filename), store.sm_thumb_path(photo.filename), store.md_thumb_path(photo.filename)]
+    FileUtils.rm_f [store.photo_path(photo.filename), store.sm_thumb_path(photo.filename), store.md_thumb_path(photo.filename)]
     photo.delete
     render_json status: 'deleted'
   end

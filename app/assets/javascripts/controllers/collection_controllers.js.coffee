@@ -8,4 +8,15 @@ JpgRanger.CollectionPageController = JpgRanger.PhotoPagingController.extend
     { collection: @get('collection.model.collection') }
   ).property('collection.model.collection')
 
-JpgRanger.CollectionPreviewController = JpgRanger.PhotoPreviewController.extend()
+JpgRanger.CollectionPreviewController = JpgRanger.PhotoPreviewController.extend
+  collection: Ember.inject.controller()
+
+  route_base_name: 'collection'
+  query_params: Ember.computed('collection.model.collection', -> { collection: @get('collection.model.collection') })
+
+JpgRanger.CollectionFullController = JpgRanger.PhotoFullController.extend
+  collection: Ember.inject.controller()
+
+  route_base_name: 'collection'
+  query_params: Ember.computed('collection.model.collection', -> { collection: @get('collection.model.collection') })
+ 

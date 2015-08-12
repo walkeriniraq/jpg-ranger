@@ -18,6 +18,35 @@ JpgRanger.PhotoPreviewController = JpgRanger.BaseController.extend
     @get('application.master_collection_list').toArray().removeObjects(@get('model.collections') || []).sort()
   ).property('model.collections.[]', 'application.master_collection_list.[]', 'application.master_collection_list')
 
+  actions:
+    open_full: ->
+      @transitionToRoute(@get('route_base_name') + '.full', @get('model'))
+    previous_photo: ->
+      @get('model').previous_photo(@get('query_params')).done (previous_photo) =>
+        if previous_photo?
+          @transitionToRoute(@get('route_base_name') + '.preview', previous_photo)
+    next_photo: ->
+      @get('model').next_photo(@get('query_params')).done (next_photo) =>
+        if next_photo?
+          @transitionToRoute(@get('route_base_name') + '.preview', next_photo)
+    delete: ->
+      if (window.confirm("Are you sure?"))
+        @get('model').delete().then =>
+          @transitionTo(@get('page_route'), 1)
+
+JpgRanger.PhotoFullController = JpgRanger.BaseController.extend
+  actions:
+    back: ->
+      @transitionToRoute(@get('route_base_name') + '.preview', @get('model'))
+    previous_photo: ->
+      @get('model').previous_photo(@get('query_params')).done (previous_photo) =>
+        if previous_photo?
+          @transitionToRoute(@get('route_base_name') + '.full', previous_photo)
+    next_photo: ->
+      @get('model').next_photo(@get('query_params')).done (next_photo) =>
+        if next_photo?
+          @transitionToRoute(@get('route_base_name') + '.full', next_photo)
+
 JpgRanger.PhotoPagingController = JpgRanger.BaseController.extend
   selected_photos: []
 
