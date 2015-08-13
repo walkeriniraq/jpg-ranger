@@ -32,7 +32,7 @@ JpgRanger.PhotoPreviewController = JpgRanger.BaseController.extend
     delete: ->
       if (window.confirm("Are you sure?"))
         @get('model').delete().then =>
-          @transitionTo(@get('page_route'), 1)
+          @transitionTo(@get('route_base_name') + '.page', 1)
 
 JpgRanger.PhotoFullController = JpgRanger.BaseController.extend
   actions:

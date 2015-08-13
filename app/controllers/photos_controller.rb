@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
 
   def index # find all
     page = (params[:page] || 1).to_i
-    query = query_from_params.paginate(page: page, per_page: 45)
+    query = query_from_params.paginate(page: page, per_page: 36)
     respond_with query, meta: { total_pages: query.total_pages, page: page }
   end
 
