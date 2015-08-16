@@ -45,6 +45,7 @@ button {
   max-height: 100px;
   position: relative;
   display: inline-block;
+  cursor: pointer;
 
   button {
     position: absolute;
@@ -108,54 +109,26 @@ button {
   line-height: 1;
   color: #535353;
   z-index: 100;
-  cursor: pointer;
   margin-top: 2px;
+  border: 0.5px solid transparent;
+  position: relative;
 }
 
 .delete-tag {
-  border: 0.5px solid #535353;
-  position: relative;
-
-  span {
-    display: none;
-    color: #e80000;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    width: 100%;
-    top: 2px;
-  }
+  cursor: pointer;
 
   &:hover {
     margin-top: 0;
     border-color: #e80000;
-    span {
-      display: inline;
-    }
   }
 }
 
 .add-tag {
-  position: relative;
-  border: 0.5px solid transparent;
   cursor: pointer;
-
-  span {
-    display: none;
-    color: #008a13;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    width: 100%;
-    top: 2px;
-  }
 
   &:hover {
     margin-top: 0;
     border: 0.5px solid #008a13;
-    span {
-      display: inline;
-    }
   }
 }
 
@@ -185,8 +158,6 @@ button {
 }
 
 .nav-container {
-  padding-top: 1em;
-
   h1 {
     margin-top: 0;
   }
@@ -218,37 +189,35 @@ button {
 }
 
 .photo-selected {
-  border: 2px solid red;
-  margin: -2px;
+  background-color: lightblue;
 }
 
-.photo_paging_bar {
-  height: 100%;
-  left: 0;
-  right: 0;
+.photo-paging-base {
   position: absolute;
+  height: 100%;
+  min-width: 120px;
+  font-size: x-large;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  button {
-    position: static;
-    height: 100%;
-    min-width: 150px;
-    font-size: x-large;
-    opacity: 0;
+  &:hover {
+    opacity: 0.3;
+    text-decoration: none;
     color: #000000;
-
-    &:hover {
-      opacity: 0.4;
-      text-decoration: none;
-    }
-  }
-
-  .prev-photo {
     background-color: lightblue;
   }
+}
 
-  .next-photo {
-    background-color: lightblue;
-  }
+.photo_paging_prev {
+  @extend .photo-paging-base;
+  left: 0;
+}
+
+.photo_paging_next {
+  @extend .photo-paging-base;
+  right: 0;
 }
 
 #uploading_overlay {
@@ -270,5 +239,26 @@ button {
     top: 40%;
     position: absolute;
     border-radius: 5px;
+  }
+}
+
+.filter_header {
+  color: #e6e57d;
+  font-size: 150%;
+}
+
+.hidden {
+  display: none;
+}
+
+.top-back-button {
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  margin: 1em;
+  opacity: 0.2;
+
+  &:hover {
+    opacity: 1;
   }
 }

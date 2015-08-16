@@ -13,7 +13,7 @@ class Photo
   field :p, as: :people, type: Array
   field :pl, as: :places, type: Array
   field :tags, type: Array
-  field :col, as: :collections, type: Array
+  field :c, as: :group, type: String
   field :t_c, as: :tags_count, type: Integer
 
   COUNT_REDUCE_FUNCTION = '
@@ -85,29 +85,13 @@ class Photo
     all.map_reduce(map, COUNT_REDUCE_FUNCTION).out(inline: true)
   end
 
-  def collections
-    self.collections = [] if super.nil?
-    super
-  end
-
-  def collections=(collections)
-    super(collections)
-    update_tags_count
-  end
-
   def self.collection_counts
-    map = '
-      function() {
-        this.col.forEach(function(collection) {
-          emit(collection, 1);
-        });
-      }
-    '
+    map = 'function() { emit(this.c, 1); }'
     all.map_reduce(map, COUNT_REDUCE_FUNCTION).out(inline: true)
   end
 
   def update_tags_count
-    self.tags_count = people.size + places.size + tags.size + collections.size
+    self.tags_count = people.size + places.size + tags.size
   end
 
   def add_tag(tag)
@@ -134,16 +118,6 @@ class Photo
     name = name.downcase.strip
     unless places.include? name
       self.places << name
-      update_tags_count
-      save
-    end
-  end
-
-  def add_collection(name)
-    self.collections ||= []
-    name = name.downcase.strip
-    unless collections.include? name
-      collections << name
       update_tags_count
       save
     end

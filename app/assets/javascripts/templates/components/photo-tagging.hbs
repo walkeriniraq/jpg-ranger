@@ -1,0 +1,23 @@
+<h4>Click to add</h4>
+<h5>People</h5>
+{{#each person in people}}
+  <span class="person tag-label add-tag" {{action 'tagging' 'person' person }}>{{person}}</span>
+{{/each}}
+<h5 style="margin-top: 2em;">Places</h5>
+{{#each place in places}}
+  <span class="place tag-label add-tag" {{action 'tagging' 'place' place }}>{{place}}</span>
+{{/each}}
+<h5 style="margin-top: 2em;">Tags</h5>
+{{#each tag in tags}}
+  <span class="tag tag-label add-tag" {{action 'tagging' 'tag' tag }}>{{tag}}</span>
+{{/each}}
+<h5 style="margin-top: 2em;">Collections</h5>
+{{#each coll in collections}}
+  <span class="collection tag-label add-tag" {{action 'tagging' 'collection' coll }}>{{coll}}</span>
+{{/each}}
+<div class="add-tags-buttons">
+  <button class="btn person" {{action 'tagging' 'person'}}>Add person</button>
+  <button class="btn place" {{action 'tagging' 'place'}}>Add place</button>
+  <button class="btn tag" {{action 'tagging' 'tag'}}>Add tag</button>
+  <button class="btn collection" {{action 'tagging' 'collection'}}>Add collection</button>
+</div>

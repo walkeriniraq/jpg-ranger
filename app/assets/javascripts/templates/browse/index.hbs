@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-sm-9">
+    {{photo-grid photos=model selected_photos=selected_photos open_preview='open_preview' change_page='change_page'}}
+  </div>
+
+  <div class="col-sm-3">
+    {{photo-tagging people=application.sorted_people_list
+                    places=application.sorted_places_list
+                    tags=application.sorted_tags_list
+                    collections=application.sorted_collection_list
+                    tagging='add_tag'
+    }}
+  </div>
+</div>

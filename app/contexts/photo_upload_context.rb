@@ -12,7 +12,7 @@ class PhotoUploadContext
   def call
     return { status: 'file was not an allowed image type' } unless @upload_file.photo_type?
     existing_photo = @metadata_store.get_by_hash(@upload_file.file_hash)
-    return { status: 'duplicate file', photo: existing_photo } unless existing_photo.nil?
+    return { status: 'duplicate file', photos: existing_photo } unless existing_photo.nil?
 
     photo = @disk_store.store(@upload_file)
     photo.save
@@ -37,7 +37,7 @@ class PhotoUploadContext
     FileUtils.move "tmp/#{photo.filename}", @disk_store.sm_thumb_path(photo.filename)
     img.resize_to_fit(1000).write "tmp/#{photo.filename}"
     FileUtils.move "tmp/#{photo.filename}", @disk_store.md_thumb_path(photo.filename)
-    { status: 'ok', photo: photo }
+    { status: 'ok', photos: photo }
   rescue EXIFR::MalformedJPEG
     # TODO: log this error condition
     'file extension is jpg but was not a jpeg'

@@ -1,0 +1,53 @@
+{{#unless application.hide_filters}}
+  <div id="tag-bar">
+    <h3 style="cursor: pointer;" {{bind-attr class="has_filters::hidden :filter_header"}} {{action 'clear_filters'}}>Remove filters</h3>
+
+    <span {{bind-attr class="has_search_term::hidden"}} {{action 'remove_search_term'}} style="font-size: larger; color: #efdcdf; cursor: pointer;">
+      <span class="glyphicon glyphicon-trash"></span>
+      Search term: {{search_term}}
+    </span>
+    <div {{bind-attr class="has_people_filters::hidden"}}>
+      {{#each person in people}}
+        <span class="person tag-label delete-tag" {{action 'remove_filter' 'person' person}}>{{person}}</span>
+      {{/each}}
+    </div>
+    <div {{bind-attr class="has_place_filters::hidden"}}>
+      {{#each place in places}}
+        <span class="place tag-label delete-tag" {{action 'remove_filter' 'place' place}}>{{place}}</span>
+      {{/each}}
+    </div>
+    <div {{bind-attr class="has_tag_filters::hidden"}}>
+      {{#each tag in tags}}
+        <span class="tag tag-label delete-tag" {{action 'remove_filter' 'tag' tag}}>{{tag}}</span>
+      {{/each}}
+    </div>
+    <div {{bind-attr class="has_collection_filters::hidden"}} >
+      {{#each coll in collections}}
+        <span class="collection tag-label delete-tag" {{action 'remove_filter' 'collection' coll}}>{{coll}}</span>
+      {{/each}}
+    </div>
+    <h3 class="filter_header">Add filters</h3>
+
+    <div>
+      {{#each person in application.sorted_people_list}}
+        <span class="person tag-label add-tag" {{action 'add_filter' 'person' person}}>{{person}}</span>
+      {{/each}}
+    </div>
+    <div>
+      {{#each place in application.sorted_places_list}}
+        <span class="place tag-label add-tag" {{action 'add_filter' 'place' place}}>{{place}}</span>
+      {{/each}}
+    </div>
+    <div>
+      {{#each tag in application.sorted_tags_list}}
+        <span class="tag tag-label add-tag" {{action 'add_filter' 'tag' tag}}>{{tag}}</span>
+      {{/each}}
+    </div>
+    <div>
+      {{#each coll in application.sorted_collection_list}}
+        <span class="collection tag-label add-tag" {{action 'add_filter' 'collection' coll}}>{{coll}}</span>
+      {{/each}}
+    </div>
+  </div>
+{{/unless}}
+{{outlet}}

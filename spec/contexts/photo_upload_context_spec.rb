@@ -20,7 +20,7 @@ describe PhotoUploadContext do
       context = PhotoUploadContext.new(OpenStruct.new(original_filename: 'other.jpg', tempfile: 'spec/resources/one.txt'), store, nil)
       ret = context.call
       expect(ret[:status]).to eq 'duplicate file'
-      expect(ret[:photo]).to eq 'fake photo object'
+      expect(ret[:photos]).to eq 'fake photo object'
     end
   end
 
@@ -71,7 +71,7 @@ describe PhotoUploadContext do
         expect(role1.file_hash).to eq role2.file_hash
       end
     end
-    context 'not a photo type' do
+    context 'not a photos type' do
       subject { PhotoUploadContext::UploadedFileRole.new(OpenStruct.new(original_filename: 'foo.bar')) }
       it { should_not be_photo_type }
     end

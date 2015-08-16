@@ -2,5 +2,24 @@
   <div style="text-align: center;" {{bind-attr title=photo.original_filename}}>
     <img class="photo-thumbnail" {{bind-attr src=photo.small_photo_path}}>
   </div>
-  {{render 'tag_holder' photo}}
+  <div class="tag-holder" style="text-align: center">
+    {{#each person in photo.people}}
+      <span class="person tag-label">
+        {{person}}
+      </span>
+    {{/each}}
+    {{#each place in photo.places}}
+      <span class="place tag-label">
+        {{place}}
+      </span>
+    {{/each}}
+    {{#each tag in photo.tags}}
+      <span class="tag tag-label">
+        {{tag}}
+      </span>
+    {{/each}}
+    <span class="collection tag-label">
+      {{photo.collection}}
+    </span>
+  </div>
 </div>

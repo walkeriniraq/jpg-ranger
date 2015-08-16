@@ -4,8 +4,13 @@ class PhotosController < ApplicationController
 
   def index # find all
     page = (params[:page] || 1).to_i
-    query = query_from_params.paginate(page: page, per_page: 36)
-    respond_with query, meta: { total_pages: query.total_pages, page: page }
+    query = query_from_params
+    paged_query = query.paginate(page: page, per_page: 36)
+    if(page > paged_query.total_pages)
+      page = paged_query.total_pages
+      paged_query = query.paginate(page: page, per_page: 36)
+    end
+    respond_with paged_query, meta: { total_pages: paged_query.total_pages, page: page }
   end
 
   def query_from_params
@@ -16,22 +21,18 @@ class PhotosController < ApplicationController
             else
               Photo.desc(:upload_time)
             end
-    tag = params[:tag].andand.downcase.andand.strip
-    unless tag.blank?
-      query = query.where(:tags.in => [tag])
+    search_term = params[:search_term].andand.downcase.andand.strip
+    unless search_term.blank?
+      query = query.where(original_filename: /#{search_term}/)
     end
-    place = params[:place].andand.downcase.andand.strip
-    unless place.blank?
-      query = query.where(:places.in => [place])
-    end
-    person = params[:person].andand.downcase.andand.strip
-    unless person.blank?
-      query = query.where(:people.in => [person])
-    end
-    collection = params[:collection].andand.downcase.andand.strip
-    unless collection.blank?
-      query = query.where(:collections.in => [collection])
-    end
+    people = params[:people].andand.map { |x| x.downcase.strip }.andand.reject { |x| x.blank? }
+    query = query.and(:people.in => people) unless people.nil? or people.empty?
+    places = params[:places].andand.map { |x| x.downcase.strip }.andand.reject { |x| x.blank? }
+    query = query.and(:places.in => places) unless places.nil? or places.empty?
+    tags = params[:tags].andand.map { |x| x.downcase.strip }.andand.reject { |x| x.blank? }
+    query = query.and(:tags.in => tags) unless tags.nil? or tags.empty?
+    group = params[:collections].andand.map { |x| x.downcase.strip }.andand.reject { |x| x.blank? }
+    query = query.and(:group.in => group) unless group.nil? or group.empty?
     query
   end
 
@@ -61,23 +62,24 @@ class PhotosController < ApplicationController
 
   def update
     photo = Photo.find(params[:id])
-    photo.update_attributes params.require(:photo).permit(tags: [], places: [], people: [], collections: [])
+    photo.update_attributes params.require(:photo).permit(:collection, tags: [], places: [], people: []).tap { |x| x[:group] = x.delete(:collection); x }
     respond_with photo
   end
 
   def create
     return render_json status: 'Must provide photos to upload.' if params[:files].blank?
+    return render_json status: 'Must upload to a collection.' if params[:collection].blank?
     files = params[:files].map do |file|
       context = PhotoUploadContext.new(file, PhotoMetadataStore.new, PhotoDiskStore.new)
       ret = context.call
-      if ret[:photo].nil?
+      if ret[:photos].nil?
         { status: ret[:status] }
       else
-        ret[:photo].add_person params[:person] unless params[:person].nil?
-        ret[:photo].add_place params[:place] unless params[:place].nil?
-        ret[:photo].add_tag params[:tag] unless params[:tag].nil?
-        ret[:photo].add_collection params[:collection] unless params[:collection].nil?
-        { status: ret[:status], id: ret[:photo].id }
+        ret[:photos].add_person params[:person] unless params[:person].nil?
+        ret[:photos].add_place params[:place] unless params[:place].nil?
+        ret[:photos].add_tag params[:tag] unless params[:tag].nil?
+        ret[:photos].group = params[:collection]
+        { status: ret[:status], id: ret[:photos].id }
       end
     end
     if browser.ie?
@@ -132,8 +134,10 @@ class PhotosController < ApplicationController
   end
 
   def multi_collection_add
+    # TODO: multi-update
     Photo.find(params[:photos]).each do |photo|
-      photo.add_collection params[:collection]
+      photo.group = params[:collection]
+      photo.save
     end
     render_json status: 'ok'
   end

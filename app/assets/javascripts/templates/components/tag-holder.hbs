@@ -1,0 +1,22 @@
+<!--  This might not be needed -->
+{{foo}}
+<div class="tag-holder" style="text-align: center">
+  {{#each person in photo.people}}
+    {{#link-to 'person' person class="person tag-label"}}
+      {{person}}
+    {{/link-to}}
+  {{/each}}
+  {{#each place in photo.places}}
+    {{#link-to 'place' place class="place tag-label"}}
+      {{place}}
+    {{/link-to}}
+  {{/each}}
+  {{#each tag in photo.tags}}
+    {{#link-to 'tag' tag class="tag tag-label"}}
+      {{tag}}
+    {{/link-to}}
+  {{/each}}
+  <span class="collection tag-label">
+    {{photo.collection}}
+  </span>
+</div>
