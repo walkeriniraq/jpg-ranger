@@ -4,6 +4,8 @@ JpgRanger::Application.routes.draw do
   get 'globals', to: 'home#globals'
   get 'stats', to: 'home#stats'
 
+  resources :collections, except: [:new, :edit, :update, :destroy]
+
   resources :photos, except: [:new, :edit] do
     member do
       get 'small_thumb'

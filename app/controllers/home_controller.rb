@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
 
   def globals
-    render_json people: Photo.distinct(:people), tags: Photo.distinct(:tags), places: Photo.distinct(:places), collections: Photo.distinct(:group).sort
+    render_json people: Photo.distinct(:people), tags: Photo.distinct(:tags), places: Photo.distinct(:places), collections: Photo.distinct(:group)
   end
 
   def stats

@@ -163,13 +163,6 @@ button {
   }
 }
 
-@media (min-width: 991px) {
-  .nav-container {
-    padding-left: 18em;
-    margin-left: 1em;
-  }
-}
-
 #tag-bar {
   position: fixed;
   left: 0;
@@ -260,5 +253,19 @@ button {
 
   &:hover {
     opacity: 1;
+  }
+}
+
+.collection-box {
+  display: inline-block;
+  border: 1px solid #002200;
+  min-width: 20em;
+  margin: 1em;
+  padding: 0.5em;
+  background-color: #003500;
+
+  h4 {
+    text-align: center;
+    margin-top: 0;
   }
 }

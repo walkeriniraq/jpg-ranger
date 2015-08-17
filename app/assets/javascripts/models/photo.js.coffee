@@ -1,5 +1,3 @@
-# for more details see: http://emberjs.com/guides/models/defining-models/
-
 JpgRanger.Photo = DS.Model.extend
   original_filename: DS.attr 'string'
   uploader: DS.attr 'string'

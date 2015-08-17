@@ -80,6 +80,7 @@ class PhotosController < ApplicationController
         ret[:photos].add_place params[:place] unless params[:place].nil?
         ret[:photos].add_tag params[:tag] unless params[:tag].nil?
         ret[:photos].group = params[:collection]
+        ret[:photos].save
         { status: ret[:status], id: ret[:photos].id }
       end
     end
