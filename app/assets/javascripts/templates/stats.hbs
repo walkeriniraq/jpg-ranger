@@ -1,36 +1,24 @@
-  <div class="pull-left">
-    {{#each person in sorted_people}}
-      <div>
-        {{#link-to 'person' person class="person tag-label link-tag"}}
-          {{person._id}} - {{person.value}}
-        {{/link-to}}
-      </div>
-    {{/each}}
-  </div>
-  <div class="pull-left">
-    {{#each place in sorted_places}}
-      <div>
-        {{#link-to 'place' place class="place tag-label link-tag"}}
-          {{place._id}} - {{place.value}}
-        {{/link-to}}
-      </div>
-    {{/each}}
-  </div>
-  <div class="pull-left">
-    {{#each tag in sorted_tags}}
-      <div>
-        {{#link-to 'tag' tag class="tag tag-label link-tag"}}
-          {{tag._id}} - {{tag.value}}
-        {{/link-to}}
-      </div>
-    {{/each}}
-  </div>
-  <div class="pull-left">
-    {{#each collection in sorted_collections}}
-      <div>
-        {{#link-to 'collection' collection class="collection tag-label link-tag"}}
-          {{collection._id}} - {{collection.value}}
-        {{/link-to}}
-      </div>
-    {{/each}}
-  </div>
+<h3>People</h3>
+{{#each person in sorted_people}}
+  <span class="person tag-label link-tag" style="cursor: pointer;" {{action 'view_person' person._id}}>
+    {{person._id}} - {{person.value}}
+  </span>
+{{/each}}
+<h3>Places</h3>
+{{#each place in sorted_places}}
+  <span class="place tag-label link-tag" style="cursor: pointer;" {{action 'view_place' place._id}}>
+    {{place._id}} - {{place.value}}
+  </span>
+{{/each}}
+<h3>Tags</h3>
+{{#each tag in sorted_tags}}
+  <span class="tag tag-label link-tag" style="cursor: pointer;" {{action 'view_tag' tag._id}}>
+    {{tag._id}} - {{tag.value}}
+  </span>
+{{/each}}
+<h3>Collections</h3>
+{{#each collection in sorted_collections}}
+  <span class="collection tag-label link-tag" style="cursor: pointer;" {{action 'view_collection' collection._id}}>
+    {{collection._id}} - {{collection.value}}
+  </span>
+{{/each}}
