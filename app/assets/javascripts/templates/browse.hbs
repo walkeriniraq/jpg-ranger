@@ -6,6 +6,7 @@
       <span class="glyphicon glyphicon-trash"></span>
       Search term: {{search_term}}
     </span>
+
     <div {{bind-attr class="has_people_filters::hidden"}}>
       {{#each person in people}}
         <span class="person tag-label delete-tag" {{action 'remove_filter' 'person' person}}>{{person}}</span>
@@ -47,6 +48,15 @@
       {{#each coll in application.sorted_collection_list}}
         <span class="collection tag-label add-tag" {{action 'add_filter' 'collection' coll}}>{{coll}}</span>
       {{/each}}
+    </div>
+    <div>
+      {{view "select"
+             content=sort_options
+             optionValuePath="content.value"
+             optionLabelPath="content.label"
+             value=sort_by
+        class="form-control"
+      }}
     </div>
   </div>
 {{/unless}}

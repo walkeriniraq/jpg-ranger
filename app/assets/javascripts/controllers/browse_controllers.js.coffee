@@ -1,11 +1,18 @@
 JpgRanger.BrowseController = Ember.Controller.extend
   application: Ember.inject.controller()
-  queryParams: ['people', 'places', 'tags', 'collections', 'search_term']
+  queryParams: ['people', 'places', 'tags', 'collections', 'search_term', 'sort_by']
   people: []
   places: []
   tags: []
   collections: []
   search_term: null
+  sort_by: 'upload_date'
+
+  sort_options: [
+    { label: 'Upload time (most recent first)', value: 'upload_date'}
+    { label: 'Tags (fewest first)', value: 'sans_tags'}
+    { label: 'Photo size (smallest first)', value: 'photo_size'}
+  ]
 
   has_people_filters: Ember.computed.notEmpty 'people'
   has_place_filters: Ember.computed.notEmpty 'places'

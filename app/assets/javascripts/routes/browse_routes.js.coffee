@@ -10,6 +10,8 @@ JpgRanger.BrowseRoute = Ember.Route.extend
       refreshModel: true
     search_term:
       refreshModel: true
+    sort_by:
+      refreshModel: true
 
   actions:
     previous_photo: (route, photo) ->

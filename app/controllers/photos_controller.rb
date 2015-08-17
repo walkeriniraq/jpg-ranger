@@ -14,12 +14,13 @@ class PhotosController < ApplicationController
   end
 
   def query_from_params
-    query = if params[:sans_tags]
-              Photo.where(:tags_count.lt => 4).asc(:tags_count)
-            elsif params[:by_size]
-              Photo.asc(:pixels)
-            else
-              Photo.desc(:upload_time)
+    query = case params[:sort_by]
+              when 'sans_tags'
+                Photo.asc(:tags_count).desc(:upload_time)
+              when 'photo_size'
+                Photo.asc(:pixels).desc(:upload_time)
+              else
+                Photo.desc(:upload_time)
             end
     search_term = params[:search_term].andand.downcase.andand.strip
     unless search_term.blank?
