@@ -1,6 +1,6 @@
 JpgRanger.IndexRoute = Ember.Route.extend
   redirect: ->
-    @transitionTo 'photos.browse'
+    @transitionTo 'browse'
 
 JpgRanger.StatsRoute = Ember.Route.extend
   model: ->
