@@ -150,11 +150,10 @@ button {
 .mini-upload {
   border: 1px solid #008B00;
   padding: 8px 40px;
-  text-align: center;
   background-color: #005d08;
   border-radius: 2px;
-  position: absolute;
-  right: 0;
+  display: inline;
+  float: right;
 }
 
 .nav-container {
@@ -259,9 +258,10 @@ button {
 .collection-box {
   display: inline-block;
   border: 1px solid #002200;
-  min-width: 20em;
+  min-width: 24em;
   margin: 1em;
-  padding: 0.5em;
+  padding: 1em;
+  min-height: 10em;
   background-color: #003500;
 
   h4 {

@@ -1,15 +1,18 @@
 JpgRanger.PhotoUploadComponent = Ember.Component.extend
 
+  click: ->
+    @sendAction('action', @get('model.name'))
+
   reset_form_data: Ember.observer 'upload_data', ->
-    $('#fileupload').fileupload 'option', 'formData', @form_data()
+    @$('.fileupload').fileupload 'option', 'formData', @form_data()
 
   form_data: ->
     $.extend { name: 'authenticity_token', value: $('meta[name="csrf-token"]').attr('content') }, @get('upload_data')
 
   didInsertElement: ->
-    $('#fileupload').fileupload
+    @$('.fileupload').fileupload
       dataType: 'json'
-      dropZone: $('#photo-upload-div')
+      dropZone: @$()
       formData: @form_data()
       add: (e, data) =>
         @sendAction('start_upload')
@@ -20,7 +23,3 @@ JpgRanger.PhotoUploadComponent = Ember.Component.extend
         @sendAction('file_uploaded')
       fail: ->
         alert 'An upload has failed!'
-
-    $('#photo-upload-div').click ->
-      $('#fileupload').click()
-

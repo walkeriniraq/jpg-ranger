@@ -1,8 +1,3 @@
 {{#each collection in model}}
-  <div class="collection-box" {{action 'view_collection' collection.name}}>
-    <h4>{{collection.pretty_name}}</h4>
-    <div>Photo count: {{collection.photo_count}}</div>
-    <div>Tag count: {{collection.tag_count}}</div>
-    <div>Tags per photo: {{collection.average_tags}}</div>
-  </div>
+  {{collection-list-element collection=collection class="collection-box" action='view_collection' start_upload='start_upload' end_upload='end_upload' file_uploaded='file_uploaded'}}
 {{/each}}

@@ -1,6 +1,9 @@
 JpgRanger.CollectionIndexRoute = Ember.Route.extend
   model: ->
     JpgRanger.Collection.list()
+  actions:
+    file_uploaded: ->
+      @refresh()
 
 JpgRanger.CollectionViewRoute = Ember.Route.extend
   model: (params) ->

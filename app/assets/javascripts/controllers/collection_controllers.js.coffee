@@ -1,8 +1,12 @@
 JpgRanger.CollectionIndexController = Ember.Controller.extend
+  application: Ember.inject.controller()
   actions:
-    view_collection: (name) ->
-      @transitionToRoute 'collection.view', name
-
+    view_collection: (collection) ->
+      @transitionToRoute 'collection.view', collection
+    start_upload: ->
+      @get('application').incrementProperty 'uploads_pending'
+    end_upload: ->
+      @get('application').decrementProperty 'uploads_pending'
 
 JpgRanger.CollectionViewController = Ember.Controller.extend
   application: Ember.inject.controller()
