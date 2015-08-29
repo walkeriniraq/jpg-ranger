@@ -15,8 +15,6 @@ JpgRanger.SelectablePhotoComponent = Ember.Component.extend
       else if (window.getSelection)
         window.getSelection().removeAllRanges()
       @sendAction 'range_select', @get('photo')
-    else if $(event.target).hasClass('photo-thumbnail')
-      @sendAction 'photo_clicked', @get('photo')
     else
       @sendAction 'single_select', @get('photo')
   ).on('click')

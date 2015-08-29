@@ -2,9 +2,6 @@ JpgRanger.PhotoGridComponent = Ember.Component.extend
   last_selected_photo: null
 
   actions:
-    open_preview: (photo) ->
-      @sendAction('open_preview', photo)
-
     change_page: (page) ->
       @get('selected_photos').clear()
       @sendAction('change_page', page)

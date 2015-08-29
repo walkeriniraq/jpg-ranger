@@ -1,9 +1,0 @@
-<div class="paging_bar">
-  {{#if has_previous_page}}
-    <button class="pull-left btn-link" {{action 'change_page' previous_page}}>Previous</button>
-  {{/if}}
-  Page {{current_page}} of {{total_pages}}
-  {{#if has_next_page}}
-    <button class="pull-right btn-link" {{action 'change_page' next_page}}>Next</button>
-  {{/if}}
-</div>

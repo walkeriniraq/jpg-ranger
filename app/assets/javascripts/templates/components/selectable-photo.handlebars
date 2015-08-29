@@ -1,6 +1,8 @@
 <div {{bind-attr class="selected:photo-selected :photo :img-thumbnail"}}>
   <div style="text-align: center;" {{bind-attr title=photo.original_filename}}>
-    <img class="photo-thumbnail" {{bind-attr src=photo.small_photo_path}}>
+    {{#link-to 'browse.preview' photo}}
+      <img class="photo-thumbnail" {{bind-attr src=photo.small_photo_path}}>
+    {{/link-to}}
   </div>
   <div class="tag-holder" style="text-align: center">
     {{#each person in photo.people}}

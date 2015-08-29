@@ -10,8 +10,9 @@ JpgRanger.BrowseController = Ember.Controller.extend
 
   sort_options: [
     { label: 'Upload time (most recent first)', value: 'upload_date'}
-    { label: 'Tags (fewest first)', value: 'sans_tags'}
+    { label: 'Tags (fewest first)', value: 'tags'}
     { label: 'Photo size (smallest first)', value: 'photo_size'}
+    { label: 'Original filename', value: 'filename'}
   ]
 
   has_people_filters: Ember.computed.notEmpty 'people'
@@ -58,8 +59,6 @@ JpgRanger.BrowseIndexController = Ember.Controller.extend
   actions:
     change_page: (page) ->
       @set('page', page)
-    open_preview: (photo) ->
-      @transitionToRoute('browse.preview', photo)
     add_tag: (type, value) ->
       # TODO: if all photos have the tag then remove it
       value = @get('application').create_tag(type) unless value?

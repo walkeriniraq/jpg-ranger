@@ -97,10 +97,11 @@ button {
 .img-thumbnail {
   width: 100%;
   transition: none;
+  cursor: default;
 }
 
 .tag-label {
-  padding: 0.25em 0.5em;
+  padding: 0.2em 0.4em;
   display: inline-block;
   font-size: 10px;
   font-weight: 100;

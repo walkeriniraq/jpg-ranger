@@ -15,7 +15,9 @@ class PhotosController < ApplicationController
 
   def query_from_params
     query = case params[:sort_by]
-              when 'sans_tags'
+              when 'filename'
+                Photo.asc(:filename).desc(:upload_time)
+              when 'tags'
                 Photo.asc(:tags_count).desc(:upload_time)
               when 'photo_size'
                 Photo.asc(:pixels).desc(:upload_time)
