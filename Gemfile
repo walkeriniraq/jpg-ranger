@@ -40,7 +40,7 @@ gem 'puma'
 
 gem 'will_paginate_mongoid'
 
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'rmagick4j'
 gem 'exifr'
 

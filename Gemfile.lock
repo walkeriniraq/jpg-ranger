@@ -46,8 +46,6 @@ GEM
       ember-source (>= 1.0, < 3)
       execjs (>= 1.2, < 3)
     bcrypt (3.1.10-java)
-    bcrypt-ruby (3.1.5-java)
-      bcrypt (>= 3.1.3)
     browser (0.8.0)
     bson (3.2.1-java)
     builder (3.2.2)
@@ -211,7 +209,7 @@ PLATFORMS
 
 DEPENDENCIES
   andand
-  bcrypt-ruby
+  bcrypt
   browser
   coffee-rails (~> 4.0.0)
   draper (~> 2.1.0)
@@ -235,3 +233,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   will_paginate_mongoid
+
+BUNDLED WITH
+   1.10.6
