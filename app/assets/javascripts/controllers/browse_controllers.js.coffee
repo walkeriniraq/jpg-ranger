@@ -80,10 +80,8 @@ JpgRanger.BrowsePreviewController = Ember.Controller.extend
       if (window.confirm("Are you sure?"))
         @get('model').delete().then =>
           @transitionToRoute('browse')
-    next: ->
-      @send('next_photo', 'browse.preview', @get('model'))
-    previous: ->
-      @send('previous_photo', 'browse.preview', @get('model'))
+    back: ->
+      @transitionToRoute('browse')
     add_tag: (type, value) ->
       value = @get('application').create_tag(type) unless value?
       return unless value?
@@ -96,7 +94,3 @@ JpgRanger.BrowseFullController = Ember.Controller.extend
   actions:
     back: ->
       @transitionToRoute('browse.preview', @get('model'))
-    next: ->
-      @send('next_photo', 'browse.full', @get('model'))
-    previous: ->
-      @send('previous_photo', 'browse.full', @get('model'))

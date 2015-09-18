@@ -11,8 +11,7 @@ JpgRanger::Application.routes.draw do
       get 'small_thumb'
       get 'medium_thumb'
       get 'full'
-      get 'next'
-      get 'previous'
+      get 'next_ids'
     end
     collection do
       get 'multi_person_add'

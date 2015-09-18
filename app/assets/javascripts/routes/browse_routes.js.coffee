@@ -13,23 +13,51 @@ JpgRanger.BrowseRoute = Ember.Route.extend
     sort_by:
       refreshModel: true
 
-  actions:
-    previous_photo: (route, photo) ->
-      photo.previous_photo(this.paramsFor('browse')).done (previous_photo) =>
-        if previous_photo?
-          @transitionTo(route, previous_photo)
-    next_photo: (route, photo) ->
-      photo.next_photo(this.paramsFor('browse')).done (next_photo) =>
-        @transitionTo(route, next_photo) if next_photo?
-
 JpgRanger.BrowseIndexRoute = Ember.Route.extend
   queryParams:
     page:
       refreshModel: true
 
   model: (params) ->
-    @store.query('photo', Ember.$.extend(params, this.paramsFor('browse')))
+    @store.query('photo', Ember.$.extend(params, @paramsFor('browse')))
 
-JpgRanger.BrowsePreviewRoute = JpgRanger.BasePhotoRoute.extend()
+JpgRanger.BrowsePreviewRoute = JpgRanger.BasePhotoRoute.extend
+  setupController: (controller, photo) ->
+    @_super(controller, photo)
+    @set 'next_id', null
+    @set 'prev_id', null
+    return unless photo?
+    Ember.run.once =>
+      photo.get_next_ids(@paramsFor('browse')).then (data) =>
+        @set 'next_id', data.next
+        @set 'prev_id', data.prev
+        # TODO: set has_next_id into the controller
+        # TODO: also dry this up
 
-JpgRanger.BrowseFullRoute = JpgRanger.BasePhotoRoute.extend()
+  actions:
+    previous: ->
+      return unless @get('prev_id')?
+      @transitionTo('browse.preview', @get('prev_id'))
+    next: ->
+      return unless @get('next_id')?
+      @transitionTo('browse.preview', @get('next_id'))
+
+JpgRanger.BrowseFullRoute = JpgRanger.BasePhotoRoute.extend
+  setupController: (controller, photo) ->
+    @_super(controller, photo)
+    @set 'next_id', null
+    @set 'prev_id', null
+    return unless photo?
+    Ember.run.once =>
+      photo.get_next_ids(@paramsFor('browse')).then (data) =>
+        @set 'next_id', data.next
+        @set 'prev_id', data.prev
+        # TODO: set has_next_id into the controller
+
+  actions:
+    previous: ->
+      return unless @get('prev_id')?
+      @transitionTo('browse.full', @get('prev_id'))
+    next: ->
+      return unless @get('next_id')?
+      @transitionTo('browse.full', @get('next_id'))

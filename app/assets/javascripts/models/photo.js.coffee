@@ -8,6 +8,8 @@ JpgRanger.Photo = DS.Model.extend
   places: DS.attr()
   collection: DS.attr 'string'
   file_hash: DS.attr 'string'
+#  prev_photo_id: DS.attr 'string'
+#  next_photo_id: DS.attr 'string'
 
   small_photo_path: (-> 
     "/photos/#{@get('id')}/small_thumb"
@@ -55,19 +57,8 @@ JpgRanger.Photo = DS.Model.extend
     return @get('moment_photo_time').format("dddd MMMM Do YYYY - h:mm a") if @get('moment_photo_time').isValid()
   ).property('moment_photo_time')
 
-  next_photo: (params) ->
-    $.getJSON("/photos/#{@get('id')}/next", params).then (data) =>
-      if data.photo?
-        @store.push(@store.normalize('photo', data.photo))
-      else
-        null
-
-  previous_photo: (params) ->
-    $.getJSON("/photos/#{@get('id')}/previous", params).then (data) =>
-      if data.photo?
-        @store.push(@store.normalize('photo', data.photo))
-      else
-        null
+  get_next_ids: (params) ->
+    $.getJSON("/photos/#{@get('id')}/next_ids", params)
 
   delete: ->
     $.ajax(url: "/photos/#{@get('id')}", type: 'DELETE')

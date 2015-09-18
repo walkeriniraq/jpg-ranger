@@ -1,29 +1,37 @@
 class PhotosController < ApplicationController
 
+  PAGE_SIZE = 36.0
+
   respond_to :json
 
   def index # find all
-    page = (params[:page] || 1).to_i
     query = query_from_params
-    paged_query = query.paginate(page: page, per_page: 36)
-    if(page > paged_query.total_pages)
-      page = paged_query.total_pages
-      paged_query = query.paginate(page: page, per_page: 36)
-    end
-    respond_with paged_query, meta: { total_pages: paged_query.total_pages, page: page }
+    total_pages = (query.count / PAGE_SIZE).ceil
+    page = (params[:page] || 1).to_i
+    page = total_pages if page > total_pages
+    start = [(page - 1) * PAGE_SIZE - 1, 0].max
+    limit = if start < 1
+              PAGE_SIZE + 1
+            else
+              PAGE_SIZE + 2
+            end
+    results = query.skip(start).limit(limit).map { |x| x }
+    results.unshift(nil) if start < 1
+    results.push(nil) if page == total_pages
+    respond_with photos: results.each_cons(3).map { |p, x, n| SinglePhotoRepresenter.new(x, p.andand.id.andand.to_s, n.andand.id.andand.to_s) }, meta: { total_pages: total_pages, page: page }
   end
 
   def query_from_params
     query = case params[:sort_by]
               when 'filename'
-                Photo.asc(:filename).desc(:upload_time)
+                Photo.asc(:filename)
               when 'tags'
-                Photo.asc(:tags_count).desc(:upload_time)
+                Photo.asc(:tags_count)
               when 'photo_size'
-                Photo.asc(:pixels).desc(:upload_time)
+                Photo.asc(:pixels)
               else
-                Photo.desc(:upload_time)
-            end
+                Photo
+            end.desc(:upload_time)
     search_term = params[:search_term].andand.downcase.andand.strip
     unless search_term.blank?
       query = query.where(original_filename: /#{search_term}/)
@@ -39,24 +47,17 @@ class PhotosController < ApplicationController
     query
   end
 
-  def next
+  def next_ids
     query = query_from_params
-    if query.last.id.to_s != params[:id]
-      next_id = nil
-      query.map(:_id).each_cons(2) { |x, x2| next_id = x2 if x.to_s == params[:id] }
-      respond_with Photo.find(next_id) and return unless next_id.nil?
+    if query.last.id.to_s == params[:id]
+      respond_with(prev: query.skip(query.count - 2).first.id.to_s) and return
     end
-    respond_with(data: 'end')
-  end
-
-  def previous
-    query = query_from_params
-    if query.first.id.to_s != params[:id]
-      previous_id = nil
-      query.map(:_id).each_cons(2) { |x, x2| previous_id = x if x2.to_s == params[:id] }
-      respond_with Photo.find(previous_id) and return unless previous_id.nil?
+    if query.first.id.to_s == params[:id]
+      respond_with(next: query.limit(2).map(:id).last.to_s) and return
     end
-    respond_with(data: 'end')
+    query.map(:id).each_cons(3) do |p, x, n|
+      respond_with(prev: p.to_s, next: n.to_s) and return if (x.to_s == params[:id])
+    end
   end
 
   def show # find

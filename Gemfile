@@ -38,11 +38,11 @@ gem 'browser'
 # use puma instead of f#@&ing WEBrick
 gem 'puma'
 
-gem 'will_paginate_mongoid'
-
 gem 'bcrypt'
 gem 'rmagick4j'
 gem 'exifr'
+gem 'representable'
+gem 'multi_json'
 
 gem 'ember-rails'
 gem 'ember-source'
